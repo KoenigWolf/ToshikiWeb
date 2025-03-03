@@ -16,9 +16,6 @@ export default function AboutSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">自己PR</h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            私の強みや価値観、目指すキャリアについてご紹介します。
-          </p>
         </motion.div>
 
         <motion.div

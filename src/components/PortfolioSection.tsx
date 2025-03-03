@@ -67,10 +67,6 @@ export default function PortfolioSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Portfolio</h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            これまでに手がけたプロジェクトの一部をご紹介します。各プロジェクトの詳細ページでは、
-            使用技術や開発プロセス、課題解決方法などをご覧いただけます。
-          </p>
         </motion.div>
 
         {/* フィルタータグ */}
