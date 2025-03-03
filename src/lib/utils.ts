@@ -76,3 +76,170 @@ export function chunkArray<T>(array: T[], size: number): T[][] {
     array.slice(index * size, index * size + size)
   );
 }
+
+// =====================================
+// 日付関連のユーティリティ関数
+// =====================================
+
+/**
+ * 日付文字列をフォーマットする関数
+ * @param dateString - フォーマットする日付文字列（例: "2023-01-01"）
+ * @returns フォーマットされた日付文字列（例: "2023年1月"）
+ */
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return `${date.getFullYear()}年${date.getMonth() + 1}月`;
+}
+
+/**
+ * 期間の文字列から開始日を抽出する関数
+ * @param periodString - 期間を表す文字列（例: "2020年4月 - 2022年3月"）
+ * @returns 開始日のDate型オブジェクト
+ */
+export function extractStartDateFromPeriod(periodString: string): Date {
+  const startDateStr = periodString.split(' - ')[0];
+  const [year, month] = startDateStr.replace('年', '/').replace('月', '').split('/');
+  return new Date(Number.parseInt(year), Number.parseInt(month) - 1);
+}
+
+// =====================================
+// テキスト処理のユーティリティ関数
+// =====================================
+
+// truncateText関数は上部で既に定義されているため、ここでの重複定義を削除しました
+
+// =====================================
+// GitHub関連のユーティリティ関数
+// =====================================
+
+/**
+ * GitHubリポジトリのURLからユーザー名とリポジトリ名を抽出する関数
+ * @param githubUrl - GitHubリポジトリのURL
+ * @returns ユーザー名とリポジトリ名のオブジェクト、または無効なURLの場合はnull
+ */
+export function extractGitHubInfo(githubUrl: string): { owner: string; repo: string } | null {
+  if (!githubUrl) return null;
+  
+  try {
+    const url = new URL(githubUrl);
+    if (url.hostname !== 'github.com') return null;
+    
+    const pathParts = url.pathname.split('/').filter(Boolean);
+    if (pathParts.length < 2) return null;
+    
+    return {
+      owner: pathParts[0],
+      repo: pathParts[1].replace('.git', '')
+    };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_error) {
+    console.error('Invalid GitHub URL:', githubUrl);
+    return null;
+  }
+}
+
+/**
+ * GitHubリポジトリからREADMEの画像URLを抽出する関数
+ * @param owner - GitHubユーザー名/組織名
+ * @param repo - リポジトリ名
+ * @returns 画像URLの配列（デフォルトブランチのREADME.mdから抽出）
+ */
+export async function getGitHubReadmeImages(owner: string, repo: string): Promise<string[]> {
+  try {
+    // GitHubのREST APIを使用してREADMEを取得
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/readme`);
+    
+    if (!response.ok) {
+      console.error(`Failed to fetch README: ${response.status}`);
+      return [];
+    }
+    
+    const data = await response.json();
+    const content = atob(data.content); // Base64デコード
+    
+    // Markdown内の画像URLを抽出
+    const imageRegex = /!\[.*?\]\((.*?)\)/g;
+    const images: string[] = [];
+    
+    // 正規表現マッチを繰り返し処理
+    let match: RegExpExecArray | null = imageRegex.exec(content);
+    while (match !== null) {
+      let imageUrl = match[1];
+      
+      // 相対パスの場合、GitHubの生のコンテンツURLに変換
+      if (!imageUrl.startsWith('http')) {
+        imageUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/${imageUrl}`;
+      }
+      
+      images.push(imageUrl);
+      
+      // 次のマッチを取得
+      match = imageRegex.exec(content);
+    }
+    
+    return images;
+  } catch (error) {
+    console.error('Error fetching GitHub README images:', error);
+    return [];
+  }
+}
+
+/**
+ * GitHubリポジトリからリポジトリのスクリーンショット画像を生成するURL
+ * @param owner - GitHubユーザー名/組織名
+ * @param repo - リポジトリ名
+ * @returns リポジトリのスクリーンショットURL
+ */
+export function getGitHubRepoScreenshot(owner: string, repo: string): string {
+  return `https://opengraph.githubassets.com/1/${owner}/${repo}`;
+}
+
+/**
+ * GitHubリポジトリからサムネイル画像を生成する関数
+ * @param githubUrl - GitHubリポジトリのURL
+ * @returns サムネイル画像のURL、または無効なURLの場合はデフォルト画像
+ */
+export function generateGitHubThumbnail(githubUrl: string): string {
+  const githubInfo = extractGitHubInfo(githubUrl);
+  
+  if (!githubInfo) {
+    return '/portfolio/default-thumbnail.jpg';
+  }
+  
+  return getGitHubRepoScreenshot(githubInfo.owner, githubInfo.repo);
+}
+
+/**
+ * GitHubリポジトリから画像を自動取得する関数
+ * @param githubUrl - GitHubリポジトリのURL
+ * @param fallbackImages - 取得に失敗した場合のフォールバック画像配列
+ * @returns 画像URLの配列
+ */
+export async function getImagesFromGitHub(
+  githubUrl: string, 
+  fallbackImages: string[] = []
+): Promise<string[]> {
+  if (!githubUrl) return fallbackImages;
+  
+  const githubInfo = extractGitHubInfo(githubUrl);
+  if (!githubInfo) return fallbackImages;
+  
+  try {
+    // READMEから画像を取得
+    const readmeImages = await getGitHubReadmeImages(githubInfo.owner, githubInfo.repo);
+    
+    // リポジトリのスクリーンショットを追加
+    const repoScreenshot = getGitHubRepoScreenshot(githubInfo.owner, githubInfo.repo);
+    
+    // 画像が見つからない場合はフォールバック画像を使用
+    if (readmeImages.length === 0 && !repoScreenshot) {
+      return fallbackImages;
+    }
+    
+    // スクリーンショットを先頭に、READMEの画像を後ろに配置
+    return [repoScreenshot, ...readmeImages];
+  } catch (error) {
+    console.error('Error getting images from GitHub:', error);
+    return fallbackImages;
+  }
+}

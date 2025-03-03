@@ -70,9 +70,6 @@ export default function Footer() {
             <p className="text-gray-600 dark:text-gray-400 font-noto-sans-jp">
               © {currentYear} Toshiki Sakuta. All rights reserved.
             </p>
-            <p className="text-gray-500 dark:text-gray-500 text-sm mt-2 font-noto-sans-jp">
-              このサイトは Next.js, TailwindCSS, shadcn/ui, Framer Motion で構築されています。
-            </p>
           </motion.div>
         </div>
       </div>

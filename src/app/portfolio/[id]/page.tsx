@@ -18,11 +18,12 @@ export async function generateStaticParams() {
 // =============================
 // ポートフォリオ詳細ページ
 // =============================
-export default async function PortfolioDetailPage(props: { 
+export default async function PortfolioDetailPage({ 
+  params 
+}: { 
   params: Promise<{ id: string }> 
 }) {
-  const params = await props.params;
-  const id = params.id;
+  const { id } = await params;
   const portfolio = portfolioItems.find((item) => item.id === id);
   if (!portfolio) notFound();
 

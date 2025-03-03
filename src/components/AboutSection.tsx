@@ -48,10 +48,6 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            技術力だけでなく、ビジネス視点を持ち、顧客や現場の課題解決に貢献できるエンジニアを目指しています。
-            新しい挑戦や学びの機会を常に探しており、チームでの協働を通じて成長していきたいと考えています。
-          </p>
         </motion.div>
       </div>
     </section>
