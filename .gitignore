@@ -61,3 +61,6 @@ logs
 # Cache
 .eslintcache
 .stylelintcache
+
+# Cursor
+.cursor/rules/.cursorrules
