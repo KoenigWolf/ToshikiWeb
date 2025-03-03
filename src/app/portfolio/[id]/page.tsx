@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Github, ExternalLink, Code, Layers, FileCode } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { ExternalLink, Github, ArrowLeft, FileCode, Layers } from "lucide-react";
 import { portfolioItems } from "@/lib/data";
 import { 
-  generateGitHubThumbnail, 
   getImagesFromGitHub,
   getPortfolioThumbnail 
 } from "@/lib/utils";

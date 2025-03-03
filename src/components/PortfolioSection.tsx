@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, ArrowRight, Code, Layers } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Code } from "lucide-react";
 import { portfolioItems } from "@/lib/data";
 import { getPortfolioThumbnail } from "@/lib/utils";
 
