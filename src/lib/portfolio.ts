@@ -36,7 +36,7 @@ export const portfolioItems: PortfolioItem[] = [
     id: "vue-clock",
     title: "Vue.js デジタル時計",
     description: "リアルタイムで現在時刻を表示するシンプルなデジタル時計アプリ",
-    thumbnail: "/portfolio/clock.png",
+    thumbnail: "/portfolio/clock.webp",
     tags: ["Vue.js", "JavaScript", "CSS"],
     demoUrl: "https://vue-js-clock.vercel.app/",
     githubUrl: "https://github.com/KoenigWolf/Vue.js_clock.git",
