@@ -1,7 +1,7 @@
 // =============================
-// 職務経歴のプロジェクトデータを管理するファイル
+// Careerのプロジェクトデータを管理するファイル
 // =============================
-// このファイルは、職務経歴セクションに表示されるプロジェクト情報を定義します。
+// このファイルは、Careerセクションに表示されるプロジェクト情報を定義します。
 // 各プロジェクトには、会社名、期間、役割、責任、使用技術、詳細業務、成果などの情報が含まれています。
 
 import type { Project, Certification } from "./types";
@@ -19,10 +19,19 @@ const ProjectEnvironment = {
 } as const;
 
 // =============================
+// プロジェクト情報の定義
+// =============================
+// プロジェクトの基本情報を定義する型
+type ProjectBase = Omit<Project, 'id'> & { id: string };
+
+// プロジェクト情報を生成する関数
+const createProject = (project: ProjectBase): Project => project;
+
+// =============================
 // プロジェクト情報の配列
 // =============================
 export const projects: Project[] = [
-  {
+  createProject({
     id: "web-dev",
     title: "Web サイト制作（個人開発）",
     company: "個人開発",
@@ -37,8 +46,8 @@ export const projects: Project[] = [
       "TailwindCSSによるモダンなコンポーネント設計"
     ],
     achievements: ["フロントエンド、バックエンド、デプロイ環境を統合的に実装"]
-  },
-  {
+  }),
+  createProject({
     id: "azure-security",
     title: "Microsoft Azure セキュリティエンジニア",
     company: "日本コンセントリクス株式会社",
@@ -52,8 +61,8 @@ export const projects: Project[] = [
       "ゼロトラストセキュリティモデル導入支援"
     ],
     achievements: ["顧客評価平均 4.7 以上（5点満点）の高評価を獲得"]
-  },
-  {
+  }),
+  createProject({
     id: "dynamics365",
     title: "Microsoft Dynamics 365 エンジニア",
     company: "日本コンセントリクス株式会社",
@@ -67,8 +76,8 @@ export const projects: Project[] = [
       "Power BI によるデータ可視化"
     ],
     achievements: ["顧客評価平均 4.7 以上の高評価を獲得"]
-  },
-  {
+  }),
+  createProject({
     id: "microsoft365",
     title: "Microsoft 365 エンジニア",
     company: "日本コンセントリクス株式会社",
@@ -82,50 +91,118 @@ export const projects: Project[] = [
       "Microsoft Purview による情報保護とデータガバナンス強化"
     ],
     achievements: ["顧客評価平均 4.7 以上（5点満点）の高評価を獲得"]
-  }
+  }),
+  createProject({
+    id: "real-estate",
+    title: "不動産売買営業",
+    company: "株式会社 LogProstyle",
+    period: "2019年2月 ～ 2020年5月",
+    role: "不動産売買営業",
+    responsibilities: [
+      "顧客対応", 
+      "契約交渉", 
+      "市場分析", 
+      "営業戦略策定"
+    ],
+    environment: [
+      "オフライン・オンライン営業", 
+      "Salesforce", 
+      "SQL", 
+      "Excel VBA"
+    ],
+    details: [
+      "データ分析を活用し、営業プロセスの効率化および最適化を推進",
+      "Salesforce の顧客データを SQL で分析し、購入意欲の高い顧客を特定",
+      "成約率の高い物件の特徴抽出により、ターゲット層別のマーケティング施策を策定",
+      "Excel VBA による営業 KPI の自動集計・レポート作成"
+    ],
+    achievements: [
+      "不動産会社向けシステム営業で全国 1 位の実績を達成"
+    ]
+  }),
+  createProject({
+    id: "circuit-design",
+    title: "電気回路設計エンジニア",
+    company: "株式会社 メイテックフィルダーズ",
+    period: "2017年4月 ～ 2019年1月",
+    role: "電気回路設計エンジニア",
+    responsibilities: [
+      "ECU センサー回路設計", 
+      "基板設計回路評価", 
+      "テスト", 
+      "プロジェクト進行管理"
+    ],
+    environment: [
+      "CATIA V5"
+    ],
+    overview: "自動車用電子制御ユニット（ECU）およびセンサー回路の設計を担当。基板レイアウトから回路評価、シミュレーションによる最適化まで幅広く従事。",
+    details: [
+      "自動車用 ECU の回路設計および基板レイアウト設計、シミュレーションによる電気特性最適化",
+      "システムレベルの電磁適合性評価を実施し、ノイズ耐性向上を目的としたフィルタ回路の設計",
+      "静電気耐性試験、温度試験、振動試験などのハードウェアテストを実施"
+    ]
+  })
 ];
 
 // =============================
-// 資格情報
+// 資格情報の定義
+// =============================
+// 資格情報の基本情報を定義する型
+type CertificationBase = Omit<Certification, 'id'> & { id: string };
+
+// 資格情報を生成する関数
+const createCertification = (certification: CertificationBase): Certification => certification;
+
+// =============================
+// 資格情報の配列
 // =============================
 export const certifications: Certification[] = [
-  {
+  createCertification({
     id: "az-900",
     name: "AZ-900：Microsoft Azure Fundamentals",
     date: "2023年1月",
     issuer: "Microsoft"
-  },
-  {
+  }),
+  createCertification({
     id: "pl-900",
     name: "PL-900：Power Platform Fundamentals",
     date: "2022年8月",
     issuer: "Microsoft"
-  },
-  {
+  }),
+  createCertification({
     id: "drivers-license",
     name: "普通自動車免許第一種",
     date: "2010年4月",
     issuer: "日本政府"
-  }
+  })
 ];
 
 // =============================
-// 関数: プロジェクトを ID で検索する
+// プロジェクト関連のユーティリティ関数
 // =============================
+
+/**
+ * プロジェクトをIDで検索する関数
+ * @param id 検索するプロジェクトのID
+ * @returns 該当するプロジェクト、または見つからない場合はundefined
+ */
 export function getProjectById(id: string): Project | undefined {
   return projects.find(project => project.id === id);
 }
 
-// =============================
-// 関数: 会社名でプロジェクトをフィルタリング
-// =============================
+/**
+ * 会社名でプロジェクトをフィルタリングする関数
+ * @param company フィルタリングする会社名
+ * @returns 該当する会社のプロジェクト配列
+ */
 export function getProjectsByCompany(company: string): Project[] {
   return projects.filter(project => project.company === company);
 }
 
-// =============================
-// 関数: 期間でプロジェクトをソート（新しい順）
-// =============================
+/**
+ * 期間でプロジェクトをソートする関数（新しい順）
+ * @returns 日付でソートされたプロジェクト配列
+ */
 export function getSortedProjectsByDate(): Project[] {
   return [...projects].sort((a, b) => {
     const dateA = new Date(a.period.split("～")[0].trim().replace("年", "-").replace("月", ""));
@@ -134,23 +211,28 @@ export function getSortedProjectsByDate(): Project[] {
   });
 }
 
-// =============================
-// 関数: 環境（技術）でプロジェクトをフィルタリング
-// =============================
+/**
+ * 環境（技術）でプロジェクトをフィルタリングする関数
+ * @param tech フィルタリングする技術名
+ * @returns 該当する技術を使用したプロジェクト配列
+ */
 export function getProjectsByTechnology(tech: string): Project[] {
   return projects.filter(project => project.environment.includes(tech));
 }
 
-// =============================
-// 関数: 役割でプロジェクトをフィルタリング
-// =============================
+/**
+ * 役割でプロジェクトをフィルタリングする関数
+ * @param role フィルタリングする役割名
+ * @returns 該当する役割のプロジェクト配列
+ */
 export function getProjectsByRole(role: string): Project[] {
   return projects.filter(project => project.role === role);
 }
 
-// =============================
-// 関数: すべてのユニークな技術スタックを取得
-// =============================
+/**
+ * すべてのユニークな技術スタックを取得する関数
+ * @returns ユニークな技術スタックの配列
+ */
 export function getAllTechnologies(): string[] {
   const allTech = projects.flatMap(project => project.environment);
   return [...new Set(allTech)];
