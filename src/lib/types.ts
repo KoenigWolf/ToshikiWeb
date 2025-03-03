@@ -59,5 +59,10 @@ export interface PortfolioItem {
     challenges: string;
     solutions: string;
     images: string[];
+    /**
+     * 画像の自動取得を有効にするフラグ
+     * trueの場合、githubUrlからREADMEの画像を自動取得します
+     */
+    autoFetchImages?: boolean;
   };
 } 

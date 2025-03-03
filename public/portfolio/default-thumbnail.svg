@@ -1,0 +1,8 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f0f0f0"/>
+  <rect x="100" y="100" width="600" height="400" rx="20" fill="#e0e0e0" stroke="#cccccc" stroke-width="2"/>
+  <path d="M400 200 L450 300 L400 400 L350 300 Z" fill="#3b82f6"/>
+  <path d="M300 250 L350 350 L300 450 L250 350 Z" fill="#10b981"/>
+  <path d="M500 250 L550 350 L500 450 L450 350 Z" fill="#ef4444"/>
+  <text x="400" y="500" font-family="Arial" font-size="24" text-anchor="middle" fill="#333333">GitHub Repository</text>
+</svg> 

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { portfolioItems } from "@/lib/data";
+import { getImagesFromGitHub, generateGitHubThumbnail } from "@/lib/utils";
 
 // =============================
 // 静的パスを生成
@@ -25,13 +26,38 @@ export default async function PortfolioDetailPage(props: {
   const portfolio = portfolioItems.find((item) => item.id === id);
   if (!portfolio) notFound();
 
+  // GitHubから画像を自動取得（autoFetchImagesがtrueの場合）
+  let portfolioImages = [...portfolio.details.images];
+  
+  if (portfolio.details.autoFetchImages && portfolio.githubUrl) {
+    try {
+      const githubImages = await getImagesFromGitHub(portfolio.githubUrl, portfolioImages);
+      if (githubImages.length > 0) {
+        portfolioImages = githubImages;
+      }
+    } catch (error) {
+      console.error('Failed to fetch images from GitHub:', error);
+    }
+  }
+
+  // サムネイルが指定されていない場合、GitHubのスクリーンショットを使用
+  const thumbnailImage = portfolio.thumbnail === '/portfolio/default-thumbnail.jpg' && portfolio.githubUrl
+    ? generateGitHubThumbnail(portfolio.githubUrl)
+    : portfolio.thumbnail;
+
   return (
     <main className="pt-24 pb-16">
       <div className="container mx-auto px-4">
         <PortfolioHeader portfolio={portfolio} />
-        <PortfolioMainImage portfolio={portfolio} />
+        <PortfolioMainImage 
+          portfolio={portfolio} 
+          mainImage={portfolioImages[0] || thumbnailImage} 
+        />
         <PortfolioDetails portfolio={portfolio} />
-        <PortfolioGallery portfolio={portfolio} />
+        <PortfolioGallery 
+          portfolio={portfolio} 
+          images={portfolioImages.slice(1)} 
+        />
         <PortfolioFooter />
       </div>
     </main>
@@ -84,11 +110,17 @@ function PortfolioHeader({ portfolio }: { portfolio: typeof portfolioItems[numbe
 // =============================
 // メインビジュアルコンポーネント
 // =============================
-function PortfolioMainImage({ portfolio }: { portfolio: typeof portfolioItems[number] }) {
+function PortfolioMainImage({ 
+  portfolio, 
+  mainImage 
+}: { 
+  portfolio: typeof portfolioItems[number];
+  mainImage: string;
+}) {
   return (
     <div className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden mb-12 shadow-lg">
       <Image
-        src={portfolio.details.images[0] || portfolio.thumbnail}
+        src={mainImage}
         alt={portfolio.title}
         fill
         className="object-cover"
@@ -143,14 +175,14 @@ function PortfolioDetails({ portfolio }: { portfolio: typeof portfolioItems[numb
 // =============================
 // ギャラリーコンポーネント
 // =============================
-function PortfolioGallery({ portfolio }: { portfolio: typeof portfolioItems[number] }) {
-  if (portfolio.details.images.length <= 1) return null;
+function PortfolioGallery({ portfolio, images }: { portfolio: typeof portfolioItems[number]; images: string[] }) {
+  if (images.length <= 1) return null;
 
   return (
     <div className="mb-12">
       <h2 className="text-2xl font-bold mb-6 font-noto-sans-jp">ギャラリー</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {portfolio.details.images.slice(1).map((image) => (
+        {images.map((image) => (
           <div key={`gallery-${image}`} className="relative h-64 rounded-lg overflow-hidden shadow-md">
             <Image src={image} alt={`${portfolio.title} screenshot`} fill className="object-cover" />
           </div>
