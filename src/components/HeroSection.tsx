@@ -10,7 +10,7 @@ import Image from "next/image";
 // 定数: 設定情報（履歴書のパス、メール情報）
 // =====================================
 const RESUME_FILE_PATH = "/resume.pdf";
-const CONTACT_EMAIL = "admin@bigonionawaji.onmicrosoft.com";
+const CONTACT_EMAIL = "toshikiii7@outlook.com";
 const EMAIL_SUBJECT = "Portfolioサイトからのお問い合わせ";
 const EMAIL_BODY = "お問い合わせ内容をご記入ください。\n\n名前：\n連絡先：\n内容：";
 

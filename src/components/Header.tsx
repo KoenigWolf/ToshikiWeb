@@ -100,7 +100,7 @@ export default function Header() {
               transition={{ duration: 0.5, delay: 0.8 }}
             >
               <Button size="icon" variant="ghost" asChild>
-                <a href="mailto:admin@bigonionawaji.onmicrosoft.com">
+                <a href="mailto:toshikiii7@outlook.com">
                   <Mail className="h-5 w-5" />
                 </a>
               </Button>
@@ -156,7 +156,7 @@ export default function Header() {
                 </a>
               </Button>
               <Button size="icon" variant="ghost" asChild>
-                <a href="mailto:admin@bigonionawaji.onmicrosoft.com">
+                <a href="mailto:toshikiii7@outlook.com">
                   <Mail className="h-5 w-5" />
                 </a>
               </Button>

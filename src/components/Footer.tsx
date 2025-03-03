@@ -54,7 +54,7 @@ export default function Footer() {
               </a>
             </Button>
             <Button size="icon" variant="ghost" asChild>
-              <a href="mailto:admin@bigonionawaji.onmicrosoft.com">
+              <a href="mailto:toshikiii7@outlook.com">
                 <Mail className="h-5 w-5" />
               </a>
             </Button>
