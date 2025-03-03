@@ -38,9 +38,9 @@ const notoSansJP = Noto_Sans_JP({
 // - `title` や `description` を定義し、検索エンジン最適化（SEO）を強化。
 
 export const metadata: Metadata = {
-  title: "Toshiki Sakuta | エンジニアポートフォリオ",
+  title: "Toshiki Sakuta | エンジニアPortfolio",
   description:
-    "Toshiki Sakutaのエンジニアポートフォリオサイトです。クラウド技術、業務自動化、インフラ運用、Web開発の経験を紹介しています。",
+    "Toshiki SakutaのエンジニアPortfolioサイトです。クラウド技術、業務自動化、インフラ運用、Web開発の経験を紹介しています。",
 };
 
 // =====================================

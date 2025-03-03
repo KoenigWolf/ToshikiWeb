@@ -16,9 +16,9 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">スキル</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Skill</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            これまでに習得したスキルと技術をカテゴリ別にご紹介します。
+            これまでに習得したSkillと技術をカテゴリ別にご紹介します。
           </p>
         </motion.div>
 
@@ -57,7 +57,7 @@ export default function SkillsSection() {
           className="mt-16 text-center"
         >
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            上記以外にも、プロジェクト管理、要件定義、顧客折衝など、技術以外のスキルも持ち合わせています。
+            上記以外にも、プロジェクト管理、要件定義、顧客折衝など、技術以外のSkillも持ち合わせています。
             常に新しい技術やツールの習得に努め、最新のトレンドをキャッチアップしています。
           </p>
         </motion.div>

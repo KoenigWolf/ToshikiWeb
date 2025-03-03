@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 
 const navItems = [
-  { name: "ホーム", href: "#home" },
-  { name: "経歴", href: "#experience" },
-  { name: "スキル", href: "#skills" },
+  { name: "Home", href: "#home" },
+  { name: "Career", href: "#experience" },
+  { name: "Skill", href: "#skills" },
   { name: "資格", href: "#certifications" },
-  { name: "ポートフォリオ", href: "#portfolio" },
+  { name: "Portfolio", href: "#portfolio" },
   { name: "自己PR", href: "#about" },
 ];
 

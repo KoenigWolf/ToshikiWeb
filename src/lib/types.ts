@@ -34,7 +34,7 @@ export interface Certification {
 }
 
 // =============================
-// スキルの型
+// Skillの型
 // =============================
 export interface SkillCategory {
   category: string;
@@ -42,7 +42,7 @@ export interface SkillCategory {
 }
 
 // =============================
-// ポートフォリオの型
+// Portfolioの型
 // =============================
 export interface PortfolioItem {
   id: string;

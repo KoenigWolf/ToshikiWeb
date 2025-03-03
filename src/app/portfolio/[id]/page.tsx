@@ -1,12 +1,16 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink, Code, Layers, FileCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { portfolioItems } from "@/lib/data";
-import { getImagesFromGitHub, generateGitHubThumbnail } from "@/lib/utils";
+import { 
+  generateGitHubThumbnail, 
+  getImagesFromGitHub,
+  getPortfolioThumbnail 
+} from "@/lib/utils";
 
 // =============================
 // 静的パスを生成
@@ -16,7 +20,7 @@ export async function generateStaticParams() {
 }
 
 // =============================
-// ポートフォリオ詳細ページ
+// Portfolio詳細ページ
 // =============================
 export default async function PortfolioDetailPage({ 
   params 
@@ -41,10 +45,8 @@ export default async function PortfolioDetailPage({
     }
   }
 
-  // サムネイルが指定されていない場合、GitHubのスクリーンショットを使用
-  const thumbnailImage = portfolio.thumbnail === '/portfolio/default-thumbnail.jpg' && portfolio.githubUrl
-    ? generateGitHubThumbnail(portfolio.githubUrl)
-    : portfolio.thumbnail;
+  // サムネイル画像を取得
+  const thumbnailImage = getPortfolioThumbnail(portfolio.thumbnail, portfolio.githubUrl);
 
   return (
     <main className="pt-24 pb-16">
@@ -73,7 +75,7 @@ function PortfolioHeader({ portfolio }: { portfolio: typeof portfolioItems[numbe
     <div className="mb-8">
       <Link href="/#portfolio" className="inline-flex items-center text-primary hover:underline mb-4">
         <ArrowLeft className="mr-2 h-4 w-4" />
-        <span className="font-noto-sans-jp">ポートフォリオ一覧に戻る</span>
+        <span className="font-noto-sans-jp">Portfolio一覧に戻る</span>
       </Link>
       <h1 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">{portfolio.title}</h1>
       <p className="text-xl text-gray-600 dark:text-gray-400 mb-6 font-noto-sans-jp">{portfolio.description}</p>
@@ -118,15 +120,29 @@ function PortfolioMainImage({
   portfolio: typeof portfolioItems[number];
   mainImage: string;
 }) {
+  const isDefaultImage = !mainImage || mainImage.includes('default-thumbnail');
+  
   return (
     <div className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden mb-12 shadow-lg">
-      <Image
-        src={mainImage}
-        alt={portfolio.title}
-        fill
-        className="object-cover"
-        priority
-      />
+      {isDefaultImage ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-8 text-white">
+          <FileCode className="w-24 h-24 mb-4 opacity-70" />
+          <h3 className="text-xl md:text-2xl font-semibold text-center font-noto-sans-jp">
+            {portfolio.title}
+          </h3>
+          <p className="mt-2 text-center max-w-md opacity-80 font-noto-sans-jp">
+            {portfolio.githubUrl ? "GitHubリポジトリからの画像を読み込めませんでした。" : "このプロジェクトには画像が登録されていません。"}
+          </p>
+        </div>
+      ) : (
+        <Image
+          src={mainImage}
+          alt={portfolio.title}
+          fill
+          className="object-cover"
+          priority
+        />
+      )}
     </div>
   );
 }
@@ -177,13 +193,34 @@ function PortfolioDetails({ portfolio }: { portfolio: typeof portfolioItems[numb
 // ギャラリーコンポーネント
 // =============================
 function PortfolioGallery({ portfolio, images }: { portfolio: typeof portfolioItems[number]; images: string[] }) {
-  if (images.length <= 1) return null;
+  // 有効な画像のみをフィルタリング（空の文字列やdefault-thumbnailを含む画像を除外）
+  const validImages = images.filter(img => img && img.trim() !== '' && !img.includes('default-thumbnail'));
+  
+  // 有効な画像がない場合は表示しない
+  if (validImages.length === 0) {
+    if (portfolio.githubUrl) {
+      return (
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 font-noto-sans-jp">ギャラリー</h2>
+          <Card className="p-6 text-center">
+            <div className="flex flex-col items-center justify-center py-8">
+              <Layers className="w-16 h-16 text-gray-400 mb-4" />
+              <p className="text-gray-600 dark:text-gray-400 font-noto-sans-jp">
+                GitHubリポジトリから追加の画像を取得できませんでした。
+              </p>
+            </div>
+          </Card>
+        </div>
+      );
+    }
+    return null;
+  }
 
   return (
     <div className="mb-12">
       <h2 className="text-2xl font-bold mb-6 font-noto-sans-jp">ギャラリー</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {images.map((image) => (
+        {validImages.map((image) => (
           <div key={`gallery-${image}`} className="relative h-64 rounded-lg overflow-hidden shadow-md">
             <Image src={image} alt={`${portfolio.title} screenshot`} fill className="object-cover" />
           </div>
@@ -201,7 +238,7 @@ function PortfolioFooter() {
     <div className="text-center">
       <Link href="/#portfolio" className="inline-flex items-center text-primary hover:underline">
         <ArrowLeft className="mr-2 h-4 w-4" />
-        <span className="font-noto-sans-jp">ポートフォリオ一覧に戻る</span>
+        <span className="font-noto-sans-jp">Portfolio一覧に戻る</span>
       </Link>
     </div>
   );

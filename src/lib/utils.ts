@@ -243,3 +243,25 @@ export async function getImagesFromGitHub(
     return fallbackImages;
   }
 }
+
+/**
+ * Portfolioアイテムのサムネイル画像URLを取得する関数
+ * 空の場合はGitHubリポジトリのサムネイルを使用し、それもない場合はデフォルト画像を返す
+ * @param thumbnail - 設定されているサムネイル画像URL
+ * @param githubUrl - GitHubリポジトリのURL（オプション）
+ * @returns サムネイル画像のURL
+ */
+export function getPortfolioThumbnail(thumbnail: string, githubUrl?: string): string {
+  // サムネイルが設定されている場合はそれを使用
+  if (thumbnail && thumbnail.trim() !== '') {
+    return thumbnail;
+  }
+  
+  // GitHubリポジトリのURLが設定されている場合はGitHubのサムネイルを使用
+  if (githubUrl && githubUrl.trim() !== '') {
+    return generateGitHubThumbnail(githubUrl);
+  }
+  
+  // どちらも設定されていない場合はデフォルト画像を使用
+  return '/portfolio/default-thumbnail.jpg';
+}

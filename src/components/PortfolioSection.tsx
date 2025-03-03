@@ -14,8 +14,32 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Code, Layers } from "lucide-react";
 import { portfolioItems } from "@/lib/data";
+import { getPortfolioThumbnail } from "@/lib/utils";
+
+// =====================================
+// Portfolioカードの画像表示コンポーネント
+// =====================================
+function PortfolioCardImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative h-48 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+      {src.includes('default-thumbnail') ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+          <Code className="w-16 h-16 text-white opacity-70" />
+        </div>
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      )}
+    </div>
+  );
+}
 
 export default function PortfolioSection() {
   const [filter, setFilter] = useState<string | null>(null);
@@ -27,7 +51,7 @@ export default function PortfolioSection() {
     )
   ).sort();
   
-  // フィルタリングされたポートフォリオアイテム
+  // フィルタリングされたPortfolioアイテム
   const filteredItems = filter 
     ? portfolioItems.filter(item => item.tags.includes(filter))
     : portfolioItems;
@@ -42,7 +66,7 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">ポートフォリオ</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Portfolio</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
             これまでに手がけたプロジェクトの一部をご紹介します。各プロジェクトの詳細ページでは、
             使用技術や開発プロセス、課題解決方法などをご覧いただけます。
@@ -76,7 +100,7 @@ export default function PortfolioSection() {
           ))}
         </motion.div>
 
-        {/* ポートフォリオグリッド */}
+        {/* Portfolioグリッド */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((item, index) => (
             <motion.div
@@ -87,15 +111,10 @@ export default function PortfolioSection() {
               viewport={{ once: true }}
             >
               <Card className="h-full overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col">
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <Image
-                    src={item.thumbnail}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
+                <PortfolioCardImage 
+                  src={getPortfolioThumbnail(item.thumbnail, item.githubUrl)} 
+                  alt={item.title} 
+                />
                 <CardHeader className="pb-2">
                   <CardTitle className="font-noto-sans-jp">{item.title}</CardTitle>
                   <CardDescription className="font-noto-sans-jp">{item.description}</CardDescription>

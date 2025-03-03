@@ -17,7 +17,7 @@ export default function CertificationsSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">資格</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            取得した資格の一覧です。常にスキルアップを目指し、新しい知識の習得に努めています。
+            取得した資格の一覧です。常にSkillアップを目指し、新しい知識の習得に努めています。
           </p>
         </motion.div>
 

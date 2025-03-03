@@ -5,14 +5,16 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { projects } from "@/lib/data";
+import { projects } from "@/lib/projects";
 
 export default function ExperienceSection() {
-  const [selectedTab, setSelectedTab] = useState(projects[0].id);
+  // 初期選択タブは最初のプロジェクト
+  const [selectedTab, setSelectedTab] = useState(projects[0]?.id || "");
 
   return (
     <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
+        {/* セクションタイトル */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,7 +28,8 @@ export default function ExperienceSection() {
           </p>
         </motion.div>
 
-        <Tabs defaultValue={projects[0].id} className="w-full" onValueChange={setSelectedTab}>
+        {/* タブ一覧 */}
+        <Tabs defaultValue={selectedTab} className="w-full" onValueChange={setSelectedTab}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -46,6 +49,7 @@ export default function ExperienceSection() {
             </TabsList>
           </motion.div>
 
+          {/* タブごとのコンテンツ */}
           {projects.map((project) => (
             <TabsContent key={project.id} value={project.id}>
               <motion.div
@@ -67,6 +71,7 @@ export default function ExperienceSection() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
+                      {/* プロジェクト概要 */}
                       {project.overview && (
                         <div>
                           <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">概要</h4>
@@ -74,6 +79,7 @@ export default function ExperienceSection() {
                         </div>
                       )}
 
+                      {/* 担当業務 */}
                       <div>
                         <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">担当</h4>
                         <div className="flex flex-wrap gap-2">
@@ -85,6 +91,7 @@ export default function ExperienceSection() {
                         </div>
                       </div>
 
+                      {/* 使用技術 */}
                       <div>
                         <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">環境・技術</h4>
                         <div className="flex flex-wrap gap-2">
@@ -96,6 +103,7 @@ export default function ExperienceSection() {
                         </div>
                       </div>
 
+                      {/* 詳細業務 */}
                       <div>
                         <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">詳細</h4>
                         <ul className="list-disc pl-5 space-y-2">
@@ -107,7 +115,8 @@ export default function ExperienceSection() {
                         </ul>
                       </div>
 
-                      {project.achievements && (
+                      {/* 成果・実績 */}
+                      {project.achievements && project.achievements.length > 0 && (
                         <div>
                           <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">成果</h4>
                           <ul className="list-disc pl-5 space-y-2">
@@ -129,4 +138,4 @@ export default function ExperienceSection() {
       </div>
     </section>
   );
-} 
+}
