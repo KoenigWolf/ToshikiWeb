@@ -4,42 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { 
-  Card, 
-  CardContent, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription 
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, ArrowRight, Code } from "lucide-react";
 import { portfolioItems } from "@/lib/data";
 import { getPortfolioThumbnail } from "@/lib/utils";
-
-// =====================================
-// Portfolioカードの画像表示コンポーネント
-// =====================================
-function PortfolioCardImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="relative h-48 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-      {src.includes('default-thumbnail') ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-          <Code className="w-16 h-16 text-white opacity-70" />
-        </div>
-      ) : (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      )}
-    </div>
-  );
-}
 
 export default function PortfolioSection() {
   const [filter, setFilter] = useState<string | null>(null);
@@ -106,58 +73,28 @@ export default function PortfolioSection() {
               transition={{ duration: 0.5, delay: 0.1 * index }}
               viewport={{ once: true }}
             >
-              <Card className="h-full overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col">
-                <PortfolioCardImage 
-                  src={getPortfolioThumbnail(item.thumbnail, item.githubUrl)} 
-                  alt={item.title} 
-                />
-                <CardHeader className="pb-2">
-                  <CardTitle className="font-noto-sans-jp">{item.title}</CardTitle>
-                  <CardDescription className="font-noto-sans-jp">{item.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="pb-2 flex-grow">
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {item.tags.slice(0, 3).map(tag => (
-                      <Badge key={tag} variant="secondary" className="font-noto-sans-jp">
-                        {tag}
-                      </Badge>
-                    ))}
-                    {item.tags.length > 3 && (
-                      <Badge variant="outline" className="font-noto-sans-jp">
-                        +{item.tags.length - 3}
-                      </Badge>
-                    )}
+              <Link href={`/portfolio/${item.id}`} className="block group">
+                <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div className="relative h-48">
+                    <Image
+                      src={getPortfolioThumbnail(item.thumbnail, item.githubUrl)}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
-                </CardContent>
-                <CardFooter className="flex justify-between pt-0">
-                  <div className="flex gap-2">
-                    {item.githubUrl && (
-                      <Button size="icon" variant="ghost" asChild>
-                        <a href={item.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-5 w-5" />
-                        </a>
-                      </Button>
-                    )}
-                    {item.demoUrl && (
-                      <Button size="icon" variant="ghost" asChild>
-                        <a href={item.demoUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-5 w-5" />
-                        </a>
-                      </Button>
-                    )}
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold font-noto-sans-jp text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                      {item.title}
+                    </h3>
                   </div>
-                  <Button variant="ghost" asChild className="gap-1">
-                    <Link href={`/portfolio/${item.id}`}>
-                      <span className="font-noto-sans-jp">詳細</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-} 
+}

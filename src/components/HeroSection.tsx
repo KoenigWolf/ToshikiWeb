@@ -53,7 +53,7 @@ export default function HeroSection() {
         >
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
             <Image 
-              src="/Toshiki.png" 
+              src="/Toshiki.webp" 
               alt="Toshiki Sakuta" 
               className="w-full h-full object-cover"
               width={160}
@@ -108,21 +108,6 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button
-            className="gap-2"
-            onClick={() => downloadFile(RESUME_FILE_PATH, "Toshiki Sakuta_履歴書.pdf")}
-          >
-            <FileText className="h-4 w-4" />
-            <span className="font-noto-sans-jp">履歴書をダウンロード</span>
-          </Button>
-          <Button
-            variant="outline"
-            className="gap-2"
-            onClick={() => openMailClient(CONTACT_EMAIL, EMAIL_SUBJECT, EMAIL_BODY)}
-          >
-            <Mail className="h-4 w-4" />
-            <span className="font-noto-sans-jp">お問い合わせ</span>
-          </Button>
         </motion.div>
 
         {/* スクロールダウンボタン */}

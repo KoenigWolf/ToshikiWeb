@@ -33,11 +33,11 @@ export default function CertificationsSection() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 dark:text-gray-400 font-noto-sans-jp">
-                    取得日: {certification.date}
+                    {certification.date}
                   </p>
                   {certification.issuer && (
                     <p className="text-gray-600 dark:text-gray-400 mt-2 font-noto-sans-jp">
-                      発行元: {certification.issuer}
+                      発行元：{certification.issuer}
                     </p>
                   )}
                 </CardContent>
