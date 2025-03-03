@@ -15,7 +15,7 @@ export default function CertificationsSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">資格</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Shikaku</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
