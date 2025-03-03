@@ -10,7 +10,7 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "Career", href: "#experience" },
   { name: "Skill", href: "#skills" },
-  { name: "資格", href: "#certifications" },
+  { name: "Shikaku", href: "#certifications" },
   { name: "Portfolio", href: "#portfolio" },
   { name: "自己PR", href: "#about" },
 ];
