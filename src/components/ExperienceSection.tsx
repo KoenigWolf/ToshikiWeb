@@ -23,9 +23,6 @@ export default function ExperienceSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">職務経歴</h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            これまでの職務経歴と実績をご紹介します。クラウド技術、業務自動化、インフラ運用、Web開発など幅広い経験があります。
-          </p>
         </motion.div>
 
         {/* タブ一覧 */}

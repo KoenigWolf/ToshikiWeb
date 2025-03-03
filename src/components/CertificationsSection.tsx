@@ -56,9 +56,6 @@ export default function CertificationsSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-noto-sans-jp">
-            今後も継続的に学習を続け、クラウド技術やデータ分析、セキュリティなどの分野で新たな資格取得を目指しています。
-          </p>
         </motion.div>
       </div>
     </section>
