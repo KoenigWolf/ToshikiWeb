@@ -46,7 +46,7 @@ export default function ExperienceSection() {
             </TabsList>
           </motion.div>
 
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <TabsContent key={project.id} value={project.id}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
