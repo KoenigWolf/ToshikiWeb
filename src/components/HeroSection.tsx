@@ -1,38 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowDown, FileText, Mail } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
-
-// =====================================
-// 定数: 設定情報（履歴書のパス、メール情報）
-// =====================================
-const RESUME_FILE_PATH = "/resume.pdf";
-const CONTACT_EMAIL = "toshikiii7@outlook.com";
-const EMAIL_SUBJECT = "Portfolioサイトからのお問い合わせ";
-const EMAIL_BODY = "お問い合わせ内容をご記入ください。\n\n名前：\n連絡先：\n内容：";
-
-// =====================================
-// 関数: ファイルのダウンロード
-// =====================================
-const downloadFile = (filePath: string, fileName: string) => {
-  const link = document.createElement("a");
-  link.href = filePath;
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
-// =====================================
-// 関数: メールクライアントを開く
-// =====================================
-const openMailClient = (email: string, subject: string, body: string) => {
-  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailtoUrl;
-};
 
 // =====================================
 // HeroSection コンポーネント
