@@ -22,7 +22,7 @@ export default function ExperienceSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">職務経歴</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Career</h2>
         </motion.div>
 
         {/* タブ一覧 */}

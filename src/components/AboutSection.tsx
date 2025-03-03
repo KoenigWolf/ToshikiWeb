@@ -15,7 +15,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">自己PR</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">PR</h2>
         </motion.div>
 
         <motion.div

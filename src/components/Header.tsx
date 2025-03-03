@@ -12,7 +12,7 @@ const navItems = [
   { name: "Skill", href: "#skills" },
   { name: "Shikaku", href: "#certifications" },
   { name: "Portfolio", href: "#portfolio" },
-  { name: "自己PR", href: "#about" },
+  { name: "PR", href: "#about" },
 ];
 
 export default function Header() {
