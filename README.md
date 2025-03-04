@@ -30,6 +30,7 @@
 ### 1. デザインパターン・コンポーネント設計
 **Atomic Design の採用**  
   UI コンポーネントを原子、分子、有機体、テンプレート、ページの階層で整理し、再利用性と保守性を向上
+
 **関心の分離 (Separation of Concerns)**  
   **データ取得**：API / Server Actions
   **状態管理**：React Hooks / Context API
@@ -38,16 +39,20 @@
 ### 2. データ管理
 **型安全なデータモデリング**  
   `types.ts` で型定義を行い、エラーを未然に防止
+
 **データとUIの分離**  
   `lib/data.ts` にデータを一元管理し、コンポーネントは表示に専念
+
 **ステート管理の最適化**  
   `useState`、`useReducer`、あるいは `React Query` の利用を検討
 
 ### 3. パフォーマンス最適化
 **Lazy Load / Code Splitting**  
   `React.lazy()` や Next.js の `dynamic import` を活用して初回ロードを高速化
+
 **Next.js Image 最適化**  
   `next/image` コンポーネントにより画像を最適化し、遅延読み込みや WebP 変換を適用
+
 **アニメーションの最適化**  
   Framer Motion の `viewport` 設定で画面外のアニメーションを抑制
 
