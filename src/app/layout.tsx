@@ -1,10 +1,6 @@
 // =====================================
 // ルートレイアウトコンポーネント
 // =====================================
-// - フォントの適用
-// - メタデータの設定
-// - 全体のレイアウトを定義
-
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -12,9 +8,6 @@ import "./globals.css";
 // =====================================
 // フォント設定
 // =====================================
-// Google Fonts を `next/font/google` で管理し、CSS 変数で適用。
-// `subsets` は不要なフォントの読み込みを避けるために指定。
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,9 +27,6 @@ const notoSansJP = Noto_Sans_JP({
 // =====================================
 // サイトのメタデータ設定
 // =====================================
-// - SEO に関する情報を管理し、他のページでも利用可能にする。
-// - `title` や `description` を定義し、検索エンジン最適化（SEO）を強化。
-
 export const metadata: Metadata = {
   title: "Toshiki Sakuta | エンジニアPortfolio",
   description:
@@ -46,10 +36,7 @@ export const metadata: Metadata = {
 // =====================================
 // ルートレイアウトコンポーネント
 // =====================================
-// - `<html>` タグで `lang="ja"` を指定し、言語を適切に設定。
-// - `body` にフォントを適用し、アンチエイリアスを有効化。
-// - `children` を受け取り、ページの内容を挿入。
-
+// children を受け取り、ページの内容を挿入。
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
