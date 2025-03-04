@@ -1,10 +1,6 @@
 // =====================================
 // Homeページのメインコンポーネント
 // =====================================
-// このコンポーネントは、Portfolioサイトのトップページを構成する。
-// セクションの一覧を定義し、動的にレンダリングすることで、
-// メンテナンス性と拡張性を向上させる。
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -19,10 +15,6 @@ import AboutSection from "@/components/AboutSection";
 // =====================================
 // セクションのリスト
 // =====================================
-// - セクションの順序や内容を変更したい場合、この配列を編集する。
-// - `id` はユニークな識別子として指定し、キーとして使用。
-// - `component` はセクションのコンポーネントを指定。
-
 const sections = [
   { id: "hero", component: HeroSection },
   { id: "experience", component: ExperienceSection },
