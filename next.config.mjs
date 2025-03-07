@@ -1,16 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    swcPlugins: [
-      [
-        "next-superjson-plugin",
-        {
-          excluded: [],
-        },
-      ],
-    ],
-  },
-
   // TypeScript type checking - ビルドエラーを無視
   typescript: {
     ignoreBuildErrors: true,
