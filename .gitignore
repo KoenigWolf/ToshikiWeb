@@ -9,28 +9,41 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+.pnpm-store/
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/cypress/videos/
+/cypress/screenshots/
 
 # next.js
 /.next/
 /out/
 .swc/
+.turbo
+.next-boost
+.vercel
+next-env.d.ts
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
 *.pem
 Thumbs.db
+desktop.ini
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.stackdump
 
 # local env files
 .env*.local
@@ -38,13 +51,17 @@ yarn-error.log*
 .env.development
 .env.test
 .env.production
+.env.development.local
+.env.test.local
+.env.production.local
 
-# vercel
-.vercel
-
-# typescript
+# caching & compilation
+.eslintcache
+.stylelintcache
 *.tsbuildinfo
-next-env.d.ts
+.babel-cache
+.cache/
+tsconfig.tsbuildinfo
 
 # IDE
 .idea/
@@ -53,14 +70,63 @@ next-env.d.ts
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+.history
+.ionide
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Windows
+$RECYCLE.BIN/
+ehthumbs.db
+ehthumbs_vista.db
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
 
 # Logs
 logs
 *.log
-
-# Cache
-.eslintcache
-.stylelintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Cursor
+.cursor/
 .cursor/rules/.cursorrules
+.cursor/settings.json
+
+# PWA
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Optional: Storybook
+/storybook-static
+
+# Optional: Outputs
+/sitemap*.xml
+/robots.txt
