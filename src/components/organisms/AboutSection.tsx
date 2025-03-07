@@ -19,7 +19,6 @@ export function AboutSection() {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">PR</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-2 font-noto-sans-jp">自己紹介</p>
         </motion.div>
 
         <motion.div

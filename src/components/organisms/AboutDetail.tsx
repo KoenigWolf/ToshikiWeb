@@ -12,7 +12,6 @@ import { getAllSkills } from "@/lib/profile";
 // =====================================
 // プロフィール詳細表示コンポーネント
 // =====================================
-
 export function AboutDetail() {
   const allSkills = getAllSkills();
   

@@ -59,7 +59,6 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 font-noto-sans-jp"
         >
-          クラウド技術 / 業務自動化 / Web開発
         </motion.h2>
 
         {/* 自己紹介文 */}
@@ -71,15 +70,6 @@ export function HeroSection() {
         >
           {personalInfo.summary}
         </motion.p>
-
-        {/* ボタン（履歴書ダウンロード & お問い合わせ） */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-        </motion.div>
 
         {/* スクロールダウンボタン */}
         <motion.div
