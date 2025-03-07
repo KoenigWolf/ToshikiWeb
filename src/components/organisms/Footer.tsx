@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/atoms/Button";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 
-export default function Footer() {
+export function Footer() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/molecules/Card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/atoms/Button";
 import { ExternalLink } from "lucide-react";
 import { projects } from "@/lib/projects";
 
-export default function ExperienceSection() {
+export function ExperienceSection() {
   // 初期選択タブは最初のプロジェクト
   const [selectedTab, setSelectedTab] = useState(projects[0]?.id || "");
 
@@ -128,4 +128,4 @@ export default function ExperienceSection() {
       </div>
     </section>
   );
-}
+} 

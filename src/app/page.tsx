@@ -1,36 +1,40 @@
 // =====================================
 // Homeページのメインコンポーネント
 // =====================================
-import { Header } from "@/components/organisms/Header";
-import Footer from "@/components/Footer";
-
-// 各セクションのコンポーネント
-import HeroSection from "@/components/HeroSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import { SkillsSection } from "@/components/organisms/SkillsSection";
-import { CertificationsSection } from "@/components/organisms/CertificationsSection";
-import { PortfolioSection } from "@/components/organisms/PortfolioSection";
-import { AboutSection } from "@/components/organisms/AboutSection";
+import { HeroSection } from '@/components/organisms/HeroSection';
+import { ExperienceSection } from '@/components/organisms/ExperienceSection';
+import { SkillsSection } from '@/components/organisms/SkillsSection';
+import { CertificationsSection } from '@/components/organisms/CertificationsSection';
+import { PortfolioSection } from '@/components/organisms/PortfolioSection';
+import { AboutSection } from '@/components/organisms/AboutSection';
+import { Header } from '@/components/organisms/Header';
+import { Footer } from '@/components/organisms/Footer';
+import { SplashCursor } from '@/components/ui/splash-cursor';
 
 // =====================================
 // セクションのリスト
 // =====================================
 const sections = [
-  { id: "hero", component: HeroSection },
-  { id: "experience", component: ExperienceSection },
-  { id: "skills", component: SkillsSection },
-  { id: "certifications", component: CertificationsSection },
-  { id: "portfolio", component: PortfolioSection },
-  { id: "about", component: AboutSection },
+  { id: 'hero', Component: HeroSection },
+  { id: 'experience', Component: ExperienceSection },
+  { id: 'skills', Component: SkillsSection },
+  { id: 'certifications', Component: CertificationsSection },
+  { id: 'portfolio', Component: PortfolioSection },
+  { id: 'about', Component: AboutSection },
 ];
 
 export default function Home() {
   return (
-    <main>
+    <main className="min-h-screen">
+      <SplashCursor 
+        SPLAT_RADIUS={0.25}
+        COLOR_UPDATE_SPEED={15}
+        BACK_COLOR={{ r: 0, g: 0, b: 0 }}
+      />
       <Header />
       {/* セクションを動的にレンダリング */}
-      {sections.map(({ id, component: SectionComponent }) => (
-        <SectionComponent key={id} />
+      {sections.map(({ id, Component }) => (
+        <Component key={id} />
       ))}
       <Footer />
     </main>

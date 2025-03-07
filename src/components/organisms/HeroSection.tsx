@@ -8,7 +8,7 @@ import Image from "next/image";
 // =====================================
 // HeroSection コンポーネント
 // =====================================
-export default function HeroSection() {
+export function HeroSection() {
   return (
     <section
       id="home"
@@ -98,4 +98,4 @@ export default function HeroSection() {
       </div>
     </section>
   );
-}
+} 
