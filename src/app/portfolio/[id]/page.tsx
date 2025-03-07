@@ -12,10 +12,14 @@ export async function generateStaticParams() {
 // =============================
 // Portfolio詳細ページ
 // =============================
-export default async function PortfolioDetailPage({ 
-  params 
-}: { 
-  params: { id: string } 
+interface Params {
+  id: string;
+}
+
+export default async function PortfolioDetailPage({
+  params,
+}: {
+  params: Params;
 }) {
   const { id } = params;
   const portfolio = portfolioItems.find((item) => item.id === id);
