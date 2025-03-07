@@ -3,6 +3,7 @@
 // =====================================
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Geist, Geist_Mono } from "next/font/google";
+import { SplashCursor } from '@/components/ui/splash-cursor';
 import "./globals.css";
 
 // =====================================
@@ -45,6 +46,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${notoSansJP.variable} antialiased font-sans`}
       >
+        <SplashCursor 
+          SPLAT_RADIUS={0.25}
+          COLOR_UPDATE_SPEED={15}
+          BACK_COLOR={{ r: 0, g: 0, b: 0 }}
+        />
         {children}
       </body>
     </html>
