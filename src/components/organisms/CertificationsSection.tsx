@@ -18,7 +18,6 @@ export function CertificationsSection() {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Shikaku</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-2 font-noto-sans-jp">取得資格一覧</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">

@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 // =====================================
 // カードコンポーネント群
 // =====================================
-
 type CardProps = React.ComponentProps<"div">;
 
 export function Card({ className, ...props }: CardProps) {

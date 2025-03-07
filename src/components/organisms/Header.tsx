@@ -9,7 +9,6 @@ import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 // =====================================
 // サイト全体のヘッダーコンポーネント
 // =====================================
-
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "Career", href: "#experience" },

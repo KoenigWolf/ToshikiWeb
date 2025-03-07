@@ -26,7 +26,6 @@ export function ExperienceSection() {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Career</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-2 font-noto-sans-jp">これまでの主要プロジェクト実績</p>
         </motion.div>
 
         {/* タブ一覧 */}

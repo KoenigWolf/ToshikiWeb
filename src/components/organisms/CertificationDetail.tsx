@@ -12,7 +12,6 @@ import type { Certification } from "@/lib/types";
 // =====================================
 // 資格詳細表示コンポーネント
 // =====================================
-
 export interface CertificationDetailProps {
   certId: string;
 }
