@@ -7,10 +7,10 @@ import Footer from "@/components/Footer";
 // 各セクションのコンポーネント
 import HeroSection from "@/components/HeroSection";
 import ExperienceSection from "@/components/ExperienceSection";
-import SkillsSection from "@/components/SkillsSection";
-import CertificationsSection from "@/components/CertificationsSection";
+import { SkillsSection } from "@/components/organisms/SkillsSection";
+import { CertificationsSection } from "@/components/organisms/CertificationsSection";
 import { PortfolioSection } from "@/components/organisms/PortfolioSection";
-import AboutSection from "@/components/AboutSection";
+import { AboutSection } from "@/components/organisms/AboutSection";
 
 // =====================================
 // セクションのリスト

@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/atoms/Button";
+import { ExternalLink } from "lucide-react";
 import { projects } from "@/lib/projects";
 
 export default function ExperienceSection() {
@@ -20,9 +23,10 @@ export default function ExperienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Career</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-2 font-noto-sans-jp">これまでの主要プロジェクト実績</p>
         </motion.div>
 
         {/* タブ一覧 */}
@@ -55,7 +59,7 @@ export default function ExperienceSection() {
                 transition={{ duration: 0.5 }}
               >
                 <Card>
-                  <CardHeader>
+                  <CardHeader className="relative">
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                       <div>
                         <CardTitle className="text-2xl font-noto-sans-jp">{project.title}</CardTitle>
@@ -65,6 +69,12 @@ export default function ExperienceSection() {
                       </div>
                       <Badge className="self-start md:self-center font-noto-sans-jp">{project.role}</Badge>
                     </div>
+                    <Link 
+                      href={`/experience/${project.id}`} 
+                      className="absolute top-3 right-3 text-primary hover:text-primary/80"
+                    >
+                      <ExternalLink className="h-5 w-5" />
+                    </Link>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
@@ -100,31 +110,14 @@ export default function ExperienceSection() {
                         </div>
                       </div>
 
-                      {/* 詳細業務 */}
-                      <div>
-                        <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">詳細</h4>
-                        <ul className="list-disc pl-5 space-y-2">
-                          {project.details.map((detail) => (
-                            <li key={detail} className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                              {detail}
-                            </li>
-                          ))}
-                        </ul>
+                      {/* 詳細を見るボタン */}
+                      <div className="pt-4 text-center">
+                        <Link href={`/experience/${project.id}`} passHref>
+                          <Button variant="outline" className="font-noto-sans-jp">
+                            詳細を見る
+                          </Button>
+                        </Link>
                       </div>
-
-                      {/* 成果・実績 */}
-                      {project.achievements && project.achievements.length > 0 && (
-                        <div>
-                          <h4 className="text-lg font-semibold mb-2 font-noto-sans-jp">成果</h4>
-                          <ul className="list-disc pl-5 space-y-2">
-                            {project.achievements.map((achievement) => (
-                              <li key={achievement} className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                                {achievement}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
                     </div>
                   </CardContent>
                 </Card>
