@@ -18,9 +18,6 @@ export function PortfolioSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-noto-sans-jp">Portfolio</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            これまでの制作物や技術的チャレンジをご紹介します。詳細は各プロジェクトページをご覧ください。
-          </p>
         </motion.div>
 
         <PortfolioGrid 
