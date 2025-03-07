@@ -6,56 +6,23 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/molecules/Card";
+import { getPortfolioItemById } from "@/lib/portfolio";
+import { PortfolioItem } from "@/lib/types";
 
 // =====================================
 // ポートフォリオ詳細表示コンポーネント
 // =====================================
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  imageUrl: string;
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  features: string[];
-}
-
-// このデータは本来はAPIやデータベースから取得する
-const projects: Project[] = [
-  {
-    id: "portfolio-website",
-    title: "Portfolio Website",
-    description: "Next.js, TypeScript, TailwindCSSで構築した個人ポートフォリオサイト",
-    longDescription: "パフォーマンス、アクセシビリティ、SEOを重視した最新のNext.jsとReactフレームワークを使用して構築された個人ポートフォリオサイトです。Atomic Designパターンとモダンな開発プラクティスを取り入れています。",
-    imageUrl: "/projects/portfolio.jpg",
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion", "Shadcn UI"],
-    githubUrl: "https://github.com/example/portfolio",
-    liveUrl: "https://example.com",
-    features: [
-      "最新のNext.js 15 App Routerアーキテクチャ",
-      "タイプセーフな開発環境",
-      "アトミックデザインによるコンポーネント構造",
-      "滑らかなページトランジションとアニメーション",
-      "完全にレスポンシブなデザイン",
-      "アクセシビリティ対応"
-    ]
-  }
-];
-
 export interface PortfolioDetailProps {
   projectId: string;
 }
 
 export function PortfolioDetail({ projectId }: PortfolioDetailProps) {
-  const [project, setProject] = useState<Project | null>(null);
+  const [project, setProject] = useState<PortfolioItem | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 実際のアプリケーションではAPIからデータを取得する
-    const foundProject = projects.find(p => p.id === projectId);
+    // lib/portfolioからデータを取得
+    const foundProject = getPortfolioItemById(projectId);
     setProject(foundProject || null);
     setLoading(false);
   }, [projectId]);
@@ -86,7 +53,7 @@ export function PortfolioDetail({ projectId }: PortfolioDetailProps) {
       >
         <div className="relative w-full h-[400px] rounded-lg overflow-hidden mb-8">
           <Image
-            src={project.imageUrl}
+            src={project.thumbnail}
             alt={project.title}
             fill
             className="object-cover"
@@ -95,11 +62,11 @@ export function PortfolioDetail({ projectId }: PortfolioDetailProps) {
 
         <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          {project.longDescription}
+          {project.details.overview}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-8">
-          {project.technologies.map((tech) => (
+          {project.details.technologies.map((tech) => (
             <span
               key={tech}
               className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm"
@@ -118,9 +85,9 @@ export function PortfolioDetail({ projectId }: PortfolioDetailProps) {
               </a>
             </Button>
           )}
-          {project.liveUrl && (
+          {project.demoUrl && (
             <Button asChild variant="outline">
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Live Demo
               </a>
@@ -135,8 +102,8 @@ export function PortfolioDetail({ projectId }: PortfolioDetailProps) {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
-              {project.features.map((feature, index) => (
-                <li key={index} className="flex items-start">
+              {project.details.features.map((feature, featureIndex) => (
+                <li key={`feature-${featureIndex}`} className="flex items-start">
                   <span className="mr-2 text-primary">•</span>
                   <span>{feature}</span>
                 </li>
