@@ -18,6 +18,10 @@ const navItems = [
   { name: "PR", href: "#about" },
 ];
 
+const pageLinks = [
+  { name: "全作品", href: "/portfolio", description: "すべてのポートフォリオ作品を見る" },
+];
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -68,6 +72,21 @@ export function Header() {
                 <Link
                   href={item.href}
                   className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors font-noto-sans-jp"
+                >
+                  {item.name}
+                </Link>
+              </motion.li>
+            ))}
+            {pageLinks.map((item, index) => (
+              <motion.li
+                key={item.name}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: navItems.length * 0.1 + index * 0.1 }}
+              >
+                <Link
+                  href={item.href}
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-noto-sans-jp"
                 >
                   {item.name}
                 </Link>
@@ -143,6 +162,20 @@ export function Header() {
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
+                  </Link>
+                </li>
+              ))}
+              {pageLinks.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="block py-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-noto-sans-jp"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                    <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
+                      {item.description}
+                    </span>
                   </Link>
                 </li>
               ))}
