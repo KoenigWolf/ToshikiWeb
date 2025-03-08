@@ -13,7 +13,6 @@ import type { PersonalInfo, Certification, SkillCategory } from "./types";
 export const personalInfo: PersonalInfo = {
   name: "Toshiki Sakuta",
   nameEn: "Toshiki Sakuta",
-  // summary: "クラウド技術、業務自動化、インフラ運用、Web開発を経験。Microsoft Azure を活用し、生産性向上に貢献。PM経験を活かし、課題分析と最適な技術提案を実施。Microsoft 365・Dynamics 365 導入、セキュリティ対策、データ分析基盤構築を担当。",
 };
 
 // =====================================
@@ -21,7 +20,7 @@ export const personalInfo: PersonalInfo = {
 // =====================================
 // 各資格には以下の情報が含まれます：
 // id: 資格の一意識別子
-// name: 資格名
+// name：資格名
 // date: 取得日
 // issuer: 発行機関（オプション）
 export const certifications: Certification[] = [

@@ -35,24 +35,24 @@ export const projects: Project[] = [
     id: "web-dev",
     title: "Web サイト制作（個人開発）",
     company: "個人開発",
-    period: "2024年3月 ～ 2025年3月",
-    role: "フルスタックエンジニア",
-    responsibilities: ["要件定義", "詳細設計", "フロントエンド開発", "バックエンド開発", "デプロイ作業"],
-    environment: [...ProjectEnvironment.FRONTEND, "AWS"],
-    overview: "動画クリエイター向け Web サイトを構築。Next.js App Router を採用し、最新技術を活用。",
+    period: "2024年3月 ～ 現在",
+    role: "フロントエンドエンジニア",
+    responsibilities: ["要件定義", "詳細設計", "フロントエンド開発", "デプロイ作業"],
+    environment: [...ProjectEnvironment.FRONTEND, "Vercel"],
+    overview: "クリエイター向け Web サイトを構築。Next.js App Router を採用し、最新技術を活用。",
     details: [
       "SEO最適化・モバイルファーストのUI/UX設計",
       "Next.js App Routerを活用した最適なページ設計",
       "TailwindCSSによるモダンなコンポーネント設計"
     ],
-    achievements: ["フロントエンド、バックエンド、デプロイ環境を統合的に実装"]
+    achievements: ["フロントエンド、デプロイ環境を統合的に実装"]
   }),
   createProject({
     id: "azure-security",
-    title: "Microsoft Azure セキュリティエンジニア",
-    company: "日本コンセントリクス株式会社",
+    title: "Microsoft Azure エンジニア",
+    company: "Concentrix Japan",
     period: "2022年9月 ～ 2024年9月",
-    role: "Microsoft Azure セキュリティエンジニア",
+    role: "Microsoft Azure",
     responsibilities: ["Azure セキュリティの技術支援", "脅威分析およびインシデント対応"],
     environment: [...ProjectEnvironment.CLOUD, ...ProjectEnvironment.SECURITY, "PowerShell", "KQL"],
     details: [
@@ -65,39 +65,39 @@ export const projects: Project[] = [
   createProject({
     id: "dynamics365",
     title: "Microsoft Dynamics 365 エンジニア",
-    company: "日本コンセントリクス株式会社",
+    company: "Concentrix Japan",
     period: "2021年9月 ～ 2022年9月",
-    role: "Microsoft Dynamics 365 エンジニア",
+    role: "Microsoft Dynamics 365",
     responsibilities: ["Dynamics 365 の導入支援", "業務プロセス最適化", "カスタム開発"],
     environment: [...ProjectEnvironment.BUSINESS, "Dataverse", "REST API"],
     details: [
-      "Power Automate を活用した RPA による業務プロセス自動化",
-      "Power Apps での業務アプリ開発",
-      "Power BI によるデータ可視化"
+      "Power Automate を活用した RPA による業務プロセス自動化支援",
+      "Power Apps での業務アプリ開発支援",
+      "Power BI によるデータ可視化支援"
     ],
     achievements: ["顧客評価平均 4.7 以上の高評価を獲得"]
   }),
   createProject({
     id: "microsoft365",
     title: "Microsoft 365 エンジニア",
-    company: "日本コンセントリクス株式会社",
+    company: "Concentrix Japan",
     period: "2020年9月 ～ 2021年9月",
-    role: "Microsoft 365 エンジニア",
+    role: "Microsoft 365",
     responsibilities: ["Microsoft 365 の導入および運用管理", "情報管理基盤の最適化"],
     environment: [...ProjectEnvironment.BUSINESS, "Microsoft Purview"],
     details: [
-      "SharePoint Online を活用した企業ポータルおよび情報共有基盤の設計・運用",
-      "Microsoft Teams / OneDrive のガバナンス強化とアクセス制御最適化",
-      "Microsoft Purview による情報保護とデータガバナンス強化"
+      "SharePoint Online を活用した企業ポータルおよび情報共有基盤の設計・運用支援",
+      "Microsoft Teams / OneDrive のガバナンス強化とアクセス制御最適化支援",
+      "Microsoft Purview による情報保護とデータガバナンス強化支援"
     ],
     achievements: ["顧客評価平均 4.7 以上（5点満点）の高評価を獲得"]
   }),
   createProject({
     id: "real-estate",
-    title: "不動産売買営業",
-    company: "株式会社 LogProstyle",
+    title: "不動仲介営業",
+    company: "株式会社LogProstyle",
     period: "2019年2月 ～ 2020年5月",
-    role: "不動産売買営業",
+    role: "不動産仲介営業",
     responsibilities: [
       "顧客対応", 
       "契約交渉", 
@@ -107,25 +107,23 @@ export const projects: Project[] = [
     environment: [
       "オフライン・オンライン営業", 
       "Salesforce", 
-      "SQL", 
       "Excel VBA"
     ],
     details: [
       "データ分析を活用し、営業プロセスの効率化および最適化を推進",
-      "Salesforce の顧客データを SQL で分析し、購入意欲の高い顧客を特定",
       "成約率の高い物件の特徴抽出により、ターゲット層別のマーケティング施策を策定",
       "Excel VBA による営業 KPI の自動集計・レポート作成"
     ],
     achievements: [
-      "不動産会社向けシステム営業で全国 1 位の実績を達成"
+      "不動産会社向けシステム営業成績全国１位の実績を達成"
     ]
   }),
   createProject({
     id: "circuit-design",
-    title: "電気回路設計エンジニア",
-    company: "株式会社 メイテックフィルダーズ",
+    title: "電装回路設計エンジニア",
+    company: "株式会社メイテック",
     period: "2017年4月 ～ 2019年1月",
-    role: "電気回路設計エンジニア",
+    role: "電装回路設計エンジニア",
     responsibilities: [
       "ECU センサー回路設計", 
       "基板設計回路評価", 
