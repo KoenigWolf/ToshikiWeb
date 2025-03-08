@@ -1,68 +1,71 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PortfolioGrid } from "@/components/molecules/portfolio/PortfolioGrid";
+import type { Variants } from "framer-motion";
+import { PortfolioGrid } from "@/components/organisms/portfolio/PortfolioGrid";
 import { SectionTitle } from "@/components/molecules/SectionTitle";
+import { ViewAllButton } from "@/components/atoms/ViewAllButton";
 
 // =====================================
-// Types
+// 型定義
 // =====================================
-export interface PortfolioSectionProps {
-  /**
-   * セクションのID（アンカーリンク用）
-   */
-  id?: string;
+type PortfolioSectionProps = {
+  // セクションのID（アンカーリンク用）
+  id?: string; 
   
-  /**
-   * 表示する最大アイテム数
-   */
+  // 表示する最大アイテム数
   maxItems?: number;
-}
-
-// =====================================
-// Constants
-// =====================================
-/**
- * セクションのアニメーション設定
- */
-const sectionAnimation = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-  viewport: { once: true },
 };
 
 // =====================================
-// ポートフォリオ一覧セクションコンポーネント
+// アニメーション設定（Variants）
+// =====================================
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+// =====================================
+// PortfolioSection
+// トップページで使用するポートフォリオ一覧表示セクション
+// Atomic Design：Organism (SectionTitle, PortfolioGrid を含む)
 // =====================================
 /**
- * ポートフォリオセクション - トップページで使用するポートフォリオ一覧表示
+ * Portfolio一覧を表示するセクションコンポーネント
  * 
- * Atomic Design:
- * - Organism: 複数のMoleculeを組み合わせた独立したセクション
- * - 依存: SectionTitle (Molecule), PortfolioGrid (Molecule)
- * 
- * @param {PortfolioSectionProps} props - コンポーネントのプロパティ
- * @returns {JSX.Element} ポートフォリオセクションコンポーネント
+ * @param props.id - セクションのID（アンカーリンク用）
+ * @param props.maxItems - 表示する最大のポートフォリオアイテム数
+ * @returns PortfolioSectionコンポーネント
  */
 export function PortfolioSection({ id = "portfolio", maxItems = 6 }: PortfolioSectionProps) {
   return (
-    <section id={id} className="py-20 bg-gray-50 dark:bg-gray-900">
+    <motion.section 
+      id={id} 
+      className="py-20 bg-gray-50 dark:bg-gray-900"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
       <div className="container mx-auto px-4">
-        {/* セクションタイトルとサブタイトル */}
+        {/* セクションタイトル */}
         <SectionTitle
           title="Portfolio"
-          subtitle="これまでの制作物や技術的チャレンジをご紹介します。詳細は各プロジェクトページをご覧ください。"
-          animationProps={sectionAnimation}
         />
 
-        {/* ポートフォリオグリッド */}
+        {/* ポートフォリオ一覧 */}
         <PortfolioGrid 
-          showFilters={true} 
+          showFilters 
           maxItems={maxItems} 
-          showButton={true} 
+        />
+
+        {/* すべての作品を見るボタン */}
+        <ViewAllButton 
+          href="/portfolio"
+          text="すべての作品を見る"
+          size="lg"
         />
       </div>
-    </section>
+    </motion.section>
   );
 }

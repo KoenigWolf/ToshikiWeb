@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Button } from "@/components/atoms/Button";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/molecules/Card";
 import { getPortfolioItemById } from "@/lib/portfolio";
-import { PortfolioItem } from "@/lib/types";
+import type { PortfolioItem } from "@/lib/types";
+import { BackButton } from "@/components/atoms/BackButton";
+import { TechnologyBadge } from "@/components/atoms/TechnologyBadge";
+import { ProjectImage } from "@/components/atoms/ProjectImage";
+import { ProjectLinks } from "@/components/molecules/portfolio/ProjectLinks";
+import { FeaturesList } from "@/components/molecules/portfolio/FeaturesList";
 
 // =====================================
 // Types
@@ -35,91 +36,7 @@ const ANIMATION_CONFIG = {
 // Sub Components
 // =====================================
 /**
- * 技術バッジ - 使用技術を表示するコンポーネント
- * 
- * Atomic Design:
- * - Atom: 単一の表示要素
- */
-const TechnologyBadge = ({ tech }: { tech: string }) => (
-  <span className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
-    {tech}
-  </span>
-);
-
-/**
- * プロジェクトリンク - GitHub、デモサイトへのリンクを表示
- * 
- * Atomic Design:
- * - Molecule: 複数のAtomを組み合わせた機能コンポーネント
- */
-const ProjectLinks = ({ githubUrl, demoUrl }: { githubUrl?: string; demoUrl?: string }) => (
-  <div className="flex gap-4 mb-12">
-    {githubUrl && (
-      <Button asChild>
-        <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-          <Github className="mr-2 h-4 w-4" />
-          GitHub
-        </a>
-      </Button>
-    )}
-    {demoUrl && (
-      <Button asChild variant="outline">
-        <a href={demoUrl} target="_blank" rel="noopener noreferrer">
-          <ExternalLink className="mr-2 h-4 w-4" />
-          Live Demo
-        </a>
-      </Button>
-    )}
-  </div>
-);
-
-/**
- * 機能リスト - プロジェクトの機能一覧を表示
- * 
- * Atomic Design:
- * - Molecule: 複数の表示要素を組み合わせたカード
- */
-const FeaturesList = ({ features }: { features: string[] }) => (
-  <Card>
-    <CardHeader>
-      <CardTitle>主な機能</CardTitle>
-      <CardDescription>このプロジェクトの特徴</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <ul className="space-y-2">
-        {features.map((feature) => (
-          <li key={feature} className="flex items-start">
-            <span className="mr-2 text-primary">•</span>
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-    </CardContent>
-  </Card>
-);
-
-/**
- * 戻るボタン - 前のページに戻るためのボタン
- * 
- * Atomic Design:
- * - Atom: 単一機能のUI要素
- */
-const BackButton = () => (
-  <Button
-    variant="ghost"
-    className="mb-6 flex items-center gap-2"
-    onClick={() => window.history.back()}
-  >
-    <ArrowLeft className="h-4 w-4" />
-    戻る
-  </Button>
-);
-
-/**
  * ロード中の表示
- * 
- * Atomic Design:
- * - Atom: 単一の表示要素
  */
 const LoadingState = () => (
   <div className="container mx-auto px-4 py-20">
@@ -129,9 +46,6 @@ const LoadingState = () => (
 
 /**
  * プロジェクト未見つかり時のエラー表示
- * 
- * Atomic Design:
- * - Molecule: 複数の表示要素を組み合わせた表示
  */
 const ProjectNotFound = () => (
   <div className="container mx-auto px-4 py-20">
@@ -144,24 +58,6 @@ const ProjectNotFound = () => (
   </div>
 );
 
-/**
- * プロジェクト画像 - プロジェクトのサムネイル画像を表示
- * 
- * Atomic Design:
- * - Atom: 単一の表示要素
- */
-const ProjectImage = ({ src, alt }: { src: string; alt: string }) => (
-  <div className="relative w-full h-[400px] rounded-lg overflow-hidden mb-8">
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      className="object-cover"
-      priority
-    />
-  </div>
-);
-
 // =====================================
 // Main Component
 // =====================================
@@ -170,7 +66,7 @@ const ProjectImage = ({ src, alt }: { src: string; alt: string }) => (
  * 
  * Atomic Design:
  * - Organism: 複数のMoleculeとAtomを組み合わせた独立セクション
- * - 依存: TechnologyBadge, ProjectLinks, FeaturesList, BackButton, ...
+ * - 依存: TechnologyBadge, ProjectLinks, FeaturesList, BackButton, ProjectImage
  * 
  * @param {PortfolioDetailProps} props - コンポーネントのプロパティ
  * @returns {JSX.Element} ポートフォリオ詳細コンポーネント
@@ -214,7 +110,10 @@ export function PortfolioDetail({ projectId }: PortfolioDetailProps) {
 
       <motion.div {...ANIMATION_CONFIG}>
         {/* プロジェクト画像 */}
-        <ProjectImage src={project.thumbnail} alt={project.title} />
+        <ProjectImage 
+          src={project.thumbnail} 
+          alt={project.title} 
+        />
 
         {/* プロジェクトタイトルと概要 */}
         <h1 className="text-3xl font-bold mb-4">{project.title}</h1>

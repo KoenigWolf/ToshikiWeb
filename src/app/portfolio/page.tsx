@@ -1,5 +1,6 @@
-import { Metadata } from "next";
-import { PortfolioGrid } from "@/components/organisms/PortfolioGrid";
+import type { Metadata } from "next";
+import { PortfolioGrid } from "@/components/organisms/portfolio/PortfolioGrid";
+import { BackButton } from "@/components/atoms/BackButton";
 
 // =============================
 // メタデータ
@@ -16,12 +17,23 @@ export default function PortfolioPage() {
   return (
     <main className="flex-1">
       <div className="container mx-auto px-4 py-12">
+        {/* 戻るボタン */}
+        <div className="mb-6">
+          <BackButton 
+            href="/" 
+            text="メインに戻る" 
+            variant="outline"
+          />
+        </div>
+
+        {/* ページタイトル */}
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center font-noto-sans-jp">
           Portfolio
         </h1>
-        
+
+        {/* ポートフォリオ一覧 */}
         <PortfolioGrid showFilters={true} />
       </div>
     </main>
   );
-} 
+}
