@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Button } from "@/components/atoms/Button";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 
@@ -100,13 +101,15 @@ export function Header() {
           </div>
         </nav>
 
-        {/* モバイルメニューアイコン */}
-        <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="メニューを開閉">
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
+        {/* モバイルメニューアイコン（モバイルでのみ表示） */}
+        <div className="md:hidden">
+          <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="メニューを開閉">
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
       </div>
 
-      {/* モバイルメニュー */}
+      {/* モバイルメニュー（モバイルでのみ表示） */}
       <AnimatePresence>
         {isOpen && <MobileMenu closeMenu={() => setIsOpen(false)} />}
       </AnimatePresence>
