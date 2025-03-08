@@ -3,7 +3,7 @@
 このプロジェクトは、モダンなフロントエンド技術を駆使した**Portfolio サイト**です。  
 **パフォーマンス・アクセシビリティ・拡張性・保守性** を重視し、実務レベルの基準で設計・実装しています。
 
-![Portfolioサイトのスクリーンショット](/public/portfolio/portfolio-screenshot.webp)
+![Portfolioサイトのスクリーンショット](/public/portfolio/ToshikiWeb.webp)
 
 ---
 
@@ -505,7 +505,7 @@ npm start
 
 ## 📄 ライセンス
 
-このプロジェクトは **MIT ライセンス** の下で公開されています。詳細については [LICENSE](LICENSE) ファイルを参照してください。
+このプロジェクトは **MIT ライセンス** の下で公開されています。
 
 ---
 
@@ -525,12 +525,3 @@ npm start
 | [テスト戦略](./docs/TESTING.md)                      | テスト手法、テストツール、テストプロセスの定義                               |
 
 チーム開発における設計思想の一貫性を保ち、効率的な協業を実現するために、これらのドキュメントを参照してください。ドキュメントは継続的に更新され、プロジェクトの進化に合わせて最新の情報を提供します。
-
----
-
-## 👤 作者
-
-**Toshiki**
-
-- [GitHub](https://github.com/KoenigWolf)
-- [メール](mailto:creatorsoasis@outlook.com)
