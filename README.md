@@ -147,7 +147,7 @@ src/
 
 ### 1. Atomic Design パターン
 
-プロジェクトは Atomic Design の原則に従って構造化されており、コンポーネントは以下のカテゴリに分類されています：
+プロジェクトは Atomic Design の原則に従って構造化されており、コンポーネントは以下のカテゴリに分類されています。
 
 ✅ **atoms**（原子）
 
@@ -169,7 +169,7 @@ src/
 
 ### 2. 関心の分離 (Separation of Concerns)
 
-コードは明確な責務に基づいて分離されています：
+コードは明確な責務に基づいて分離されています。
 
 ✅ **データ層**
 
@@ -505,13 +505,3 @@ npm start
 ## 📄 ライセンス
 
 このプロジェクトは **MIT ライセンス** の下で公開されています。詳細については [LICENSE](LICENSE) ファイルを参照してください。
-
----
-
-## 👤 作者
-
-**佐久田 俊樹 (Toshiki Sakuta)**
-
-- 📧 Email: [toshiki.sakuta@example.com](mailto:toshiki.sakuta@example.com)
-- 🐙 GitHub: [@KoenigWolf](https://github.com/KoenigWolf)
-- 🔗 LinkedIn: [Toshiki Sakuta](https://linkedin.com/in/toshikisakuta)
