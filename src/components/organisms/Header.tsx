@@ -32,7 +32,7 @@ const NAV_ITEMS: NavItem[] = [
 const SOCIAL_LINKS: SocialLinkProps[] = [
   { icon: Github, href: "https://github.com/KoenigWolf", label: "GitHub", isExternal: true },
   { icon: Linkedin, href: "https://www.linkedin.com/in/toshikisakuta/", label: "LinkedIn", isExternal: true },
-  { icon: Mail, href: "mailto:toshikiii7@outlook.com", label: "メールで連絡" },
+  { icon: Mail, href: "mailto:creatorsoasis@outlook.com", label: "メールで連絡" },
 ];
 
 // =====================================

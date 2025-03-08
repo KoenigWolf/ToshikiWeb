@@ -47,13 +47,13 @@
 
 ### 技術スタック
 
-- **フレームワーク**: Next.js 15 (App Router)
-- **言語**: TypeScript
-- **UI ライブラリ**: React 19
-- **スタイリング**: TailwindCSS 4
-- **コンポーネントライブラリ**: shadcn/ui
-- **アニメーション**: Framer Motion
-- **リント/フォーマット**: ESLint 9
+- **フレームワーク**：Next.js 15 (App Router)
+- **言語**：TypeScript
+- **UI ライブラリ**：React 19
+- **スタイリング**：TailwindCSS 4
+- **コンポーネントライブラリ**：shadcn/ui
+- **アニメーション**：Framer Motion
+- **リント/フォーマット**：ESLint 9
 
 ### ディレクトリ構造
 
@@ -94,11 +94,11 @@ src/
 
 Atomic Design は、UI コンポーネントを 5 つの階層に分類する設計手法です：
 
-1. **Atoms**（原子）: ボタン、入力フィールド、アイコンなどの基本要素
-2. **Molecules**（分子）: 複数のアトムを組み合わせた小さな機能単位
-3. **Organisms**（有機体）: 複数の分子とアトムからなる独立したコンポーネント
-4. **Templates**（テンプレート）: ページのレイアウト構造
-5. **Pages**（ページ）: 具体的なコンテンツが入ったテンプレート
+1. **Atoms**（原子）：ボタン、入力フィールド、アイコンなどの基本要素
+2. **Molecules**（分子）：複数のアトムを組み合わせた小さな機能単位
+3. **Organisms**（有機体）：複数の分子とアトムからなる独立したコンポーネント
+4. **Templates**（テンプレート）：ページのレイアウト構造
+5. **Pages**（ページ）：具体的なコンテンツが入ったテンプレート
 
 当プロジェクトでは、主に Atoms、Molecules、Organisms の 3 階層を使用します。
 
@@ -107,25 +107,25 @@ Atomic Design は、UI コンポーネントを 5 つの階層に分類する設
 #### Atoms
 
 - 最小の機能単位で、他のコンポーネントに依存しない
-- 例: `Button`, `Badge`, `Icon`, `Input`, `TechnologyBadge`, `BackButton`, `ViewAllButton`
+- 例：`Button`, `Badge`, `Icon`, `Input`, `TechnologyBadge`, `BackButton`, `ViewAllButton`
 
 #### Molecules
 
 - 複数の Atoms を組み合わせた機能ユニット
 - 特定のユースケースに対応する小さな機能ブロック
-- 例: `ProjectLinks`, `FeaturesList`, `SectionTitle`, `FormField`
+- 例：`ProjectLinks`, `FeaturesList`, `SectionTitle`, `FormField`
 
 #### Organisms
 
 - 複数の Molecules と Atoms を組み合わせた完全な機能ブロック
 - ページの主要セクションを形成
-- 例: `Header`, `Footer`, `PortfolioGrid`, `PortfolioDetail`, `HeroSection`
+- 例：`Header`, `Footer`, `PortfolioGrid`, `PortfolioDetail`, `HeroSection`
 
 ### コンポーネント命名規則
 
 - コンポーネント名は **PascalCase** で記述
-- 具体的で説明的な名前を使用（例: `PortfolioGrid`、`BackButton`）
-- 接頭辞や接尾辞で役割を明確化（例: `...Section`, `...Card`, `...List`）
+- 具体的で説明的な名前を使用（例：`PortfolioGrid`、`BackButton`）
+- 接頭辞や接尾辞で役割を明確化（例：`...Section`, `...Card`, `...List`）
 
 ---
 
@@ -133,12 +133,12 @@ Atomic Design は、UI コンポーネントを 5 つの階層に分類する設
 
 ### TypeScript
 
-- **型の厳格な使用**: 暗黙的な any 型を避け、明示的に型を定義する
+- **型の厳格な使用**：暗黙的な any 型を避け、明示的に型を定義する
 - **インターフェースとタイプ**:
-  - `interface`: オブジェクト構造を定義（例: `UserProfile`）
-  - `type`: ユニオン型や型エイリアス（例: `ButtonSize = 'sm' | 'md' | 'lg'`）
-- **型注針**: 戻り値の型を明示的に指定する
-- **JSDoc**: 主要な関数やコンポーネントには必ず JSDoc コメントを追加
+  - `interface`：オブジェクト構造を定義（例：`UserProfile`）
+  - `type`：ユニオン型や型エイリアス（例：`ButtonSize = 'sm' | 'md' | 'lg'`）
+- **型注針**：戻り値の型を明示的に指定する
+- **JSDoc**：主要な関数やコンポーネントには必ず JSDoc コメントを追加
 
 ```typescript
 /**
@@ -146,27 +146,27 @@ Atomic Design は、UI コンポーネントを 5 つの階層に分類する設
  * @param userId - ユーザーID
  * @returns ユーザープロファイル情報
  */
-async function getUserProfile(userId: string): Promise<UserProfile> {
+async function getUserProfile(userId：string)：Promise<UserProfile> {
   // ...
 }
 ```
 
 ### React / Next.js
 
-- **関数コンポーネント**: クラスコンポーネントではなく関数コンポーネントを使用
-- **Hooks**: カスタムフックでロジックを分離し、再利用性を高める
-- **Server Components**: 状態を持たないコンポーネントは Server Components として実装
-- **Client Components**: インタラクティブな要素を含むコンポーネントのみに`"use client"`を使用
-- **Dynamic Import**: 必要に応じて`dynamic()`を使用して遅延ロード
+- **関数コンポーネント**：クラスコンポーネントではなく関数コンポーネントを使用
+- **Hooks**：カスタムフックでロジックを分離し、再利用性を高める
+- **Server Components**：状態を持たないコンポーネントは Server Components として実装
+- **Client Components**：インタラクティブな要素を含むコンポーネントのみに`"use client"`を使用
+- **Dynamic Import**：必要に応じて`dynamic()`を使用して遅延ロード
 
 ### ファイル構成
 
-- **1 ファイル 1 コンポーネント**: 基本的に 1 つのファイルには 1 つのコンポーネントのみを定義
-- **インデックスエクスポート**: 複雑なコンポーネントは個別のフォルダに配置し、index.ts で一括エクスポート
+- **1 ファイル 1 コンポーネント**：基本的に 1 つのファイルには 1 つのコンポーネントのみを定義
+- **インデックスエクスポート**：複雑なコンポーネントは個別のフォルダに配置し、index.ts で一括エクスポート
 - **命名規則**:
-  - コンポーネントファイル: `PascalCase.tsx`
-  - ユーティリティファイル: `camelCase.ts`
-  - テストファイル: `*.test.tsx` または `*.spec.tsx`
+  - コンポーネントファイル：`PascalCase.tsx`
+  - ユーティリティファイル：`camelCase.ts`
+  - テストファイル：`*.test.tsx` または `*.spec.tsx`
 
 ---
 
@@ -174,8 +174,8 @@ async function getUserProfile(userId: string): Promise<UserProfile> {
 
 ### ローカル状態
 
-- **useState**: コンポーネント内の単純な状態管理
-- **useReducer**: 複雑な状態ロジックの管理
+- **useState**：コンポーネント内の単純な状態管理
+- **useReducer**：複雑な状態ロジックの管理
 
 ### グローバル状態
 
@@ -184,8 +184,8 @@ async function getUserProfile(userId: string): Promise<UserProfile> {
 
 ### データフェッチ
 
-- **Server Components**: データ取得は Server Components で行うのが基本
-- **API Routes**: 認証が必要なデータ取得やサードパーティ API の呼び出しには API Routes を使用
+- **Server Components**：データ取得は Server Components で行うのが基本
+- **API Routes**：認証が必要なデータ取得やサードパーティ API の呼び出しには API Routes を使用
 
 ---
 
@@ -196,13 +196,13 @@ async function getUserProfile(userId: string): Promise<UserProfile> {
 - ユーティリティファーストの原則に従い、直接クラスを適用
 - カスタムデザインは Tailwind の設定ファイルで一元管理
 - 複雑なスタイルには`@apply`ディレクティブを使用
-- レスポンシブデザインにはブレークポイント接頭辞を使用（例: `md:`, `lg:`）
+- レスポンシブデザインにはブレークポイント接頭辞を使用（例：`md:`, `lg:`）
 
 ### スタイル規則
 
-- **クラス名の順序**: レイアウト → サイズ → スペーシング → 色 → その他
-- **条件付きクラス**: `clsx()`や`cn()`ユーティリティを使用して条件付きクラス適用
-- **ダークモード**: `dark:`接頭辞を使用してダークモードのスタイルを定義
+- **クラス名の順序**：レイアウト → サイズ → スペーシング → 色 → その他
+- **条件付きクラス**：`clsx()`や`cn()`ユーティリティを使用して条件付きクラス適用
+- **ダークモード**：`dark:`接頭辞を使用してダークモードのスタイルを定義
 
 ```tsx
 <div className={cn(
@@ -218,22 +218,22 @@ async function getUserProfile(userId: string): Promise<UserProfile> {
 
 ### レンダリング最適化
 
-- **メモ化**: 適切に`useMemo`と`useCallback`を使用して不要な再計算を防ぐ
-- **レンダリング制御**: 不要なレンダリングを`React.memo`で防ぐ
-- **仮想化**: 大量のリストには仮想化ライブラリを検討
+- **メモ化**：適切に`useMemo`と`useCallback`を使用して不要な再計算を防ぐ
+- **レンダリング制御**：不要なレンダリングを`React.memo`で防ぐ
+- **仮想化**：大量のリストには仮想化ライブラリを検討
 
 ### コード分割
 
-- **ページベースの分割**: 各ページは自動的に分割される
-- **コンポーネント分割**: 大きなコンポーネントは`dynamic import`で遅延ロード
-- **共通コード抽出**: 複数のページで使用される共通コードはバンドラーによって自動抽出
+- **ページベースの分割**：各ページは自動的に分割される
+- **コンポーネント分割**：大きなコンポーネントは`dynamic import`で遅延ロード
+- **共通コード抽出**：複数のページで使用される共通コードはバンドラーによって自動抽出
 
 ### 画像最適化
 
-- **Next.js Image**: 常に`next/image`コンポーネントを使用して画像を最適化
-- **WebP 形式**: 画像は WebP 形式を優先
-- **サイズ指定**: 常に`width`と`height`属性を指定
-- **Lazy Loading**: `priority`プロパティは必要な場合のみ`true`に設定
+- **Next.js Image**：常に`next/image`コンポーネントを使用して画像を最適化
+- **WebP 形式**：画像は WebP 形式を優先
+- **サイズ指定**：常に`width`と`height`属性を指定
+- **Lazy Loading**：`priority`プロパティは必要な場合のみ`true`に設定
 
 ---
 
@@ -243,17 +243,17 @@ async function getUserProfile(userId: string): Promise<UserProfile> {
 
 ### ガイドライン
 
-- **セマンティック HTML**: 適切な HTML 要素を使用（`button`、`nav`、`header`など）
-- **キーボードナビゲーション**: すべての操作がキーボードで可能なように実装
-- **ARIA 属性**: 必要に応じて適切な ARIA 属性を追加
-- **フォーカス管理**: フォーカスの視覚的な表示とロジック実装
-- **カラーコントラスト**: 最小コントラスト比 4.5:1 を維持
+- **セマンティック HTML**：適切な HTML 要素を使用（`button`、`nav`、`header`など）
+- **キーボードナビゲーション**：すべての操作がキーボードで可能なように実装
+- **ARIA 属性**：必要に応じて適切な ARIA 属性を追加
+- **フォーカス管理**：フォーカスの視覚的な表示とロジック実装
+- **カラーコントラスト**：最小コントラスト比 4.5:1 を維持
 
 ### アクセシビリティチェック
 
-- **自動テスト**: ESLint の a11y プラグインを使用
-- **マニュアルテスト**: スクリーンリーダーでの動作確認
-- **コントラストチェック**: デザインツールやブラウザ開発者ツールで確認
+- **自動テスト**：ESLint の a11y プラグインを使用
+- **マニュアルテスト**：スクリーンリーダーでの動作確認
+- **コントラストチェック**：デザインツールやブラウザ開発者ツールで確認
 
 ---
 

@@ -530,8 +530,7 @@ npm start
 
 ## 👤 作者
 
-**佐久田 敏輝 (Toshiki Sakuta)**
+**Toshiki**
 
 - [GitHub](https://github.com/KoenigWolf)
-- [LinkedIn](https://www.linkedin.com/in/toshikisakuta/)
-- [メール](mailto:toshikiii7@outlook.com)
+- [メール](mailto:creatorsoasis@outlook.com)

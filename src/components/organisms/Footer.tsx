@@ -46,7 +46,7 @@ export function Footer() {
         <motion.div {...fadeInUp(0.1)} className="flex space-x-4 mb-6">
           <SocialLink href="https://github.com/KoenigWolf" icon={Github} label="GitHub" />
           <SocialLink href="https://www.linkedin.com/in/toshikisakuta/" icon={Linkedin} label="LinkedIn" />
-          <SocialLink href="mailto:toshikiii7@outlook.com" icon={Mail} label="メール" />
+          <SocialLink href="mailto:creatorsoasis@outlook.com" icon={Mail} label="メール" />
         </motion.div>
 
         {/* コピーライト */}

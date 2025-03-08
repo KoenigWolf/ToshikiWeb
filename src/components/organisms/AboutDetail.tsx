@@ -60,7 +60,7 @@ export function AboutDetail() {
             <div className="flex items-center gap-2">
               <Mail className="h-5 w-5 text-gray-500" />
               <span className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                メール：toshikiii7@outlook.com
+                メール：creatorsoasis@outlook.com
               </span>
             </div>
             
