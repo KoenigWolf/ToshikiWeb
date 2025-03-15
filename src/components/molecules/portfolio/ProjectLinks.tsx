@@ -1,67 +1,56 @@
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
 
-// =====================================
-// プロジェクトリンクコンポーネント
-// GitHubリポジトリやデモサイトへのリンクボタンを表示
-// Atomic Design: Molecule - 複数のAtomを組み合わせた機能コンポーネント
-// =====================================
-
+// Props for ProjectLinks component
 export interface ProjectLinksProps {
-  /** GitHubリポジトリのURL */
-  githubUrl?: string;
-  
-  /** デモサイトのURL */
-  demoUrl?: string;
-  
-  /** 追加のスタイルクラス */
-  className?: string;
+  githubUrl?: string; // GitHub repository URL
+  demoUrl?: string;   // Demo site URL
+  className?: string; // Additional CSS classes
 }
 
-/**
- * プロジェクトリンク - GitHub、デモサイトへのリンクを表示
- * @param props コンポーネントのプロパティ
- * @returns ProjectLinksコンポーネント
- */
-export function ProjectLinks({ 
-  githubUrl, 
-  demoUrl, 
-  className = "mb-12" 
+// Component to display project links (GitHub & Live Demo)
+// Returns null if neither URL is provided.
+export function ProjectLinks({
+  githubUrl,
+  demoUrl,
+  className = "mb-12",
 }: ProjectLinksProps) {
-  // リンクがどちらもない場合は何も表示しない
+  // If no URLs are provided, render nothing.
   if (!githubUrl && !demoUrl) {
     return null;
   }
-  
+
   return (
     <div className={`flex gap-4 ${className}`}>
       {githubUrl && (
+        // Button linking to GitHub repository
         <Button asChild>
-          <a 
-            href={githubUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="GitHub リポジトリを表示"
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub リポジトリを表示" // Accessibility label
           >
-            <Github className="mr-2 h-4 w-4" />
+            <Github className="w-4 h-4 mr-2" />
             GitHub
           </a>
         </Button>
       )}
-      
+
       {demoUrl && (
+        // Button linking to the demo site
         <Button asChild variant="outline">
-          <a 
-            href={demoUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="デモサイトを表示"
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="デモサイトを表示" // Accessibility label
           >
-            <ExternalLink className="mr-2 h-4 w-4" />
+            <ExternalLink className="w-4 h-4 mr-2" />
             Live Demo
           </a>
         </Button>
       )}
     </div>
   );
-} 
+}

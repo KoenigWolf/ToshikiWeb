@@ -1,35 +1,21 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-// =====================================
-// 機能リストコンポーネント
-// プロジェクトの機能や特徴をリスト表示
-// Atomic Design: Molecule - 複数の要素を組み合わせたUI
-// =====================================
-
+// FeaturesListProps: プロジェクトの機能一覧を表示するためのプロパティ
 export interface FeaturesListProps {
-  /** 表示する機能リスト */
-  features: string[];
-  
-  /** カードタイトル */
-  title?: string;
-  
-  /** カード説明文 */
-  description?: string;
-  
-  /** 追加のスタイルクラス */
-  className?: string;
+  features: string[]; // 表示する機能の配列
+  title?: string; // カードのタイトル (デフォルト: "主な機能")
+  description?: string; // カードの説明文 (オプション)
+  className?: string; // 追加のスタイルクラス (オプション)
 }
 
-/**
- * 機能リスト - プロジェクトの機能一覧を表示するカード
- * @param props コンポーネントのプロパティ
- * @returns FeaturesListコンポーネント
- */
-export function FeaturesList({ 
+// FeaturesListコンポーネント: プロジェクトの機能一覧をカード形式で表示
+export function FeaturesList({
   features,
   title = "主な機能",
-  className = ""
+  description,
+  className = "",
 }: FeaturesListProps) {
+  // featuresが空の場合は何も表示しない
   if (!features || features.length === 0) {
     return null;
   }
@@ -38,12 +24,16 @@ export function FeaturesList({
     <Card className={className}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
+        {description && (
+          // 説明文がある場合はCardDescriptionで表示
+          <CardDescription>{description}</CardDescription>
+        )}
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">
           {features.map((feature) => (
             <li key={feature} className="flex items-start">
-              <span className="mr-2 text-primary">•</span>
+              <span className="mr-2 text-primary">•</span> {/* リストアイテムの先頭にアイコンを表示 */}
               <span>{feature}</span>
             </li>
           ))}
@@ -51,4 +41,4 @@ export function FeaturesList({
       </CardContent>
     </Card>
   );
-} 
+}
