@@ -8,4 +8,4 @@
 //
 // このファイルは将来のバージョンで削除される予定です。
 
-export * from './utils/index';
+export * from './index';
