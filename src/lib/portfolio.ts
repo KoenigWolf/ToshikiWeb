@@ -5,6 +5,30 @@ import type { PortfolioItem } from "./types";
 
 // Portfolioデータ
 export const portfolioItems: PortfolioItem[] = [
+    {
+    id: "lp-kids", // 一意なプロジェクトID
+    title: "留学サービスLP", // プロジェクトタイトル
+    description: "LPの基本構造を汎用的に使用するためのテンプレート", // 簡単な説明
+    thumbnail: "/portfolio/kodomo.webp", // サムネイル画像のパス
+    tags: ["Next.js", "React", "TailwindCSS", "TypeScript"], // 使用技術タグ
+    demoUrl: "https://lp-kodomo.vercel.app/", // デモサイトのURL
+    githubUrl: "https://github.com/KoenigWolf/lp-kodomo.git", // GitHubリポジトリのURL
+    details: {
+      overview:
+        "LPの基本構造を汎用的に使用するためのテンプレート。",
+      features: [
+        "LPの基本構造を汎用的に使用するためのテンプレート。",
+        "レスポンシブデザイン対応"
+      ],
+      technologies: ["Next.js", "React", "TypeScript", "TailwindCSS"],
+      challenges:
+        "LPの基本構造を汎用的に使用すること。",
+      solutions:
+        "LPの基本構造を汎用的に使用すること。",
+      images: [] // 画像があれば格納する配列
+    }
+  },
+
   // プロジェクト: 税金計算アプリ
   {
     id: "zeikin", // 一意なプロジェクトID

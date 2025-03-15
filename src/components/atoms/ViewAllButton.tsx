@@ -1,55 +1,32 @@
+// 「すべての作品を見る」ボタンコンポーネント
+// ポートフォリオや実績の詳細ページへ誘導するCTAボタン
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-// =====================================
-// ViewAllButtonコンポーネント
-// 「すべての作品を見る」ボタン
-// Atomic Design: Atom - 単一の機能を持つ最小単位のUIコンポーネント
-// =====================================
 export interface ViewAllButtonProps {
-  /**
-   * リンク先のパス
-   */
+  // リンク先のパス
   href: string;
-  
-  /**
-   * ボタンのテキスト
-   */
+  // ボタンに表示するテキスト
   text: string;
-  
-  /**
-   * ボタンサイズ
-   */
+  // ボタンサイズ ("default", "sm", "lg", "icon")
   size?: "default" | "sm" | "lg" | "icon";
-  
-  /**
-   * 追加のクラス名
-   */
+  // 追加のクラス名
   className?: string;
 }
 
-/**
- * 「すべてを見る」タイプのボタン
- * ポートフォリオや実績など、もっと見るためのCTAボタン
- * 
- * @param props コンポーネントのプロパティ
- * @returns ViewAllButtonコンポーネント
- */
-export function ViewAllButton({ 
-  href, 
-  text, 
-  size = "default",
-  className = ""
-}: ViewAllButtonProps) {
+export function ViewAllButton({ href, text, size = "default", className = "" }: ViewAllButtonProps) {
+  // 外側のコンテナは中央揃えと上部の余白を設定
   return (
     <div className={`mt-8 text-center ${className}`}>
+      {/* ButtonコンポーネントにasChildでLinkをラップし、カスタムボタンを実現 */}
       <Button asChild size={size} className="font-noto-sans-jp">
         <Link href={href}>
           {text}
-          <ArrowRight className="ml-2 h-5 w-5" />
+          {/* テキストと一緒に右側に矢印アイコンを表示 */}
+          <ArrowRight className="w-5 h-5 ml-2" />
         </Link>
       </Button>
     </div>
   );
-} 
+}

@@ -1,34 +1,19 @@
+// --------------------------
+// ProjectImage コンポーネント
+// --------------------------
 import Image from "next/image";
 
-// =====================================
-// プロジェクト画像コンポーネント
-// プロジェクトやPortfolioのサムネイル画像表示
-// Atomic Design: Atom - 単一の機能を持つ最小単位のUIコンポーネント
-// =====================================
-
+// ProjectImageProps: プロジェクト画像コンポーネントのプロパティ定義
 export interface ProjectImageProps {
-  /** 画像のソースURL */
-  src: string;
-  
-  /** 画像の代替テキスト */
-  alt: string;
-  
-  /** 画像の高さ（ピクセルまたはTailwindのクラス） */
-  height?: string | number;
-  
-  /** 画像の表示優先度 */
-  priority?: boolean;
-  
-  /** 追加のスタイルクラス */
-  className?: string;
+  src: string;              // 画像のソースURL
+  alt: string;              // 画像の代替テキスト
+  height?: string | number; // 画像の高さ（ピクセル値またはTailwindのクラス）
+  priority?: boolean;       // 画像の読み込み優先度
+  className?: string;       // 追加のスタイルクラス
 }
 
-/**
- * プロジェクト画像 - プロジェクトのサムネイル画像を表示
- * @param props コンポーネントのプロパティ
- * @returns ProjectImageコンポーネント
- */
-export function ProjectImage({ 
+// ProjectImage コンポーネント: プロジェクトやPortfolioのサムネイル画像を表示
+export function ProjectImage({
   src,
   alt,
   height = "400px",
@@ -36,17 +21,18 @@ export function ProjectImage({
   className = "mb-8"
 }: ProjectImageProps) {
   return (
-    <div 
+    <div
       className={`relative w-full rounded-lg overflow-hidden ${className}`}
-      style={{ height: typeof height === 'number' ? `${height}px` : height }}
+      // heightがnumberの場合はpx単位を追加、文字列ならそのまま使用
+      style={{ height: typeof height === "number" ? `${height}px` : height }}
     >
       <Image
         src={src}
         alt={alt}
-        fill
-        className="object-cover"
-        priority={priority}
+        fill               // コンテナに合わせて画像サイズを調整
+        className="object-cover" // 画像の表示方法をカバーに設定
+        priority={priority}      // 優先的に読み込むかどうか
       />
     </div>
   );
-} 
+}
