@@ -13,6 +13,7 @@ import type { PersonalInfo, Certification, SkillCategory } from "./types";
 export const personalInfo: PersonalInfo = {
   name: "Toshiki Sakuta",
   nameEn: "Toshiki Sakuta",
+  summary: "Web Engineer",
 };
 
 // =====================================
