@@ -28,7 +28,6 @@ export interface FeaturesListProps {
 export function FeaturesList({ 
   features,
   title = "主な機能",
-  description = "このプロジェクトの特徴",
   className = ""
 }: FeaturesListProps) {
   if (!features || features.length === 0) {
@@ -39,7 +38,6 @@ export function FeaturesList({
     <Card className={className}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { PortfolioGrid } from "@/components/organisms/portfolio/PortfolioGrid";
+import { PortfolioGrid } from "@/components/organisms/PortfolioGrid";
 import { SectionTitle } from "@/components/molecules/SectionTitle";
 import { ViewAllButton } from "@/components/atoms/ViewAllButton";
 

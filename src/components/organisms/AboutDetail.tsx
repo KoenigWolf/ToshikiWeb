@@ -9,150 +9,256 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/molecules
 import { Badge } from "@/components/ui/badge";
 import { personalInfo, selfPR } from "@/lib/profile";
 import { getAllSkills } from "@/lib/profile";
+import { cn } from "@/lib/utils";
 
-// =====================================
-// プロフィール詳細表示コンポーネント
-// =====================================
-export function AboutDetail() {
-  const allSkills = getAllSkills();
-  
+// ====================================
+// 型定義 (Types)
+// ====================================
+// ProfileInfoItem
+// 基本情報カード内に表示する各項目の構造を定義
+interface ProfileInfoItem {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}
+
+// CareerTimelineItem
+// 経歴タイムラインに表示する各項目の期間とタイトルを定義
+interface CareerTimelineItem {
+  period: string;
+  title: string;
+}
+
+// ====================================
+// 定数定義 (Constants)
+// ====================================
+// ANIMATION_VARIANTS
+// モーションの初期状態、表示状態、及び遷移時間を一元管理
+// 各コンポーネントで一貫したアニメーション効果を実現するために利用
+const ANIMATION_VARIANTS = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+// PROFILE_INFO_ITEMS
+// ・基本情報カードで表示する項目（アイコン、ラベル、値）の定義
+const PROFILE_INFO_ITEMS: ProfileInfoItem[] = [
+  {
+    icon: <User className="w-5 h-5 text-gray-500" />,
+    label: "名前",
+    value: personalInfo.name,
+  },
+  {
+    icon: <Mail className="w-5 h-5 text-gray-500" />,
+    label: "メール",
+    value: "creatorsoasis@outlook.com",
+  },
+  {
+    icon: <MapPin className="w-5 h-5 text-gray-500" />,
+    label: "所在地",
+    value: "大阪市",
+  },
+];
+
+// CAREER_TIMELINE
+// ・経歴タイムラインに表示する各項目の期間とタイトルの定義
+const CAREER_TIMELINE: CareerTimelineItem[] = [
+  { period: "2022", title: "Microsoft Azure Project" },
+  { period: "2021", title: "Dynamics 365 Project" },
+  { period: "2020", title: "Microsoft 365 Project" },
+  { period: "2020", title: "Uber Project" },
+  { period: "2019", title: "不動産仲介営業" },
+  { period: "2019", title: "農業機械エンジニア" },
+  { period: "2017", title: "自動車電装エンジニア" },
+  { period: "2014", title: "The Ritz Carlton Staff" },
+];
+
+// ====================================
+// サブコンポーネント (Sub Components)
+// ====================================
+/**
+ * BackButton コンポーネント
+ * - 「戻る」ボタンを表示し、クリックで指定セクション（#about）へ遷移
+ * - ButtonコンポーネントとNext.jsのLinkで構成
+ */
+const BackButton = () => {
   return (
-    <div className="container max-w-4xl px-4 py-20 mx-auto">
-      <Link href="/#about" passHref>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 mb-6"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          戻る
-        </Button>
-      </Link>
+    <Link href="/#about" passHref>
+      <Button variant="ghost" className="flex items-center gap-2 mb-6">
+        <ArrowLeft className="w-4 h-4" />
+        戻る
+      </Button>
+    </Link>
+  );
+};
 
+/**
+ * ProfileHeader コンポーネント
+ * - セクションのタイトルとサブタイトルを表示し、自己紹介の文脈を提供
+ */
+const ProfileHeader = () => {
+  return (
+    <>
+      <h1 className="mb-2 text-3xl font-bold font-noto-sans-jp">自己紹介</h1>
+      <p className="mb-8 text-gray-600 dark:text-gray-400 font-noto-sans-jp">
+        {personalInfo.name}のプロフィール
+      </p>
+    </>
+  );
+};
+
+/**
+ * ProfileInfoCard コンポーネント
+ * - 基本情報をカード形式で表示
+ * - 各情報項目はアイコン・ラベル・値の組み合わせで表現され、ループ処理で展開
+ */
+const ProfileInfoCard = () => {
+  return (
+    <Card className="mb-8">
+      <CardHeader>
+        <CardTitle className="text-2xl font-noto-sans-jp">基本情報</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {PROFILE_INFO_ITEMS.map(({ icon, label, value }) => (
+          <div key={label} className="flex items-center gap-2">
+            {icon}
+            <span
+              className={cn(
+                "text-gray-700 dark:text-gray-300",
+                "font-noto-sans-jp"
+              )}
+            >
+              {label}：{value}
+            </span>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+};
+
+/**
+ * SelfPRCard コンポーネント
+ * - 自己PR文をカード形式で表示
+ * - 改行文字で分割した各パラグラフを個別にレンダリングし、読みやすい文章レイアウトを実現
+ */
+const SelfPRCard = () => {
+  return (
+    <Card className="mb-8">
+      <CardHeader>
+        <CardTitle className="text-2xl font-noto-sans-jp">自己PR</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {selfPR.split("\n").map((paragraph, index) => (
+            <p
+              key={index}
+              className={cn(
+                "leading-relaxed",
+                "text-gray-700 dark:text-gray-300",
+                "font-noto-sans-jp"
+              )}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+/**
+ * SkillsCard コンポーネント
+ * - 保有スキルをカード形式で表示
+ * - getAllSkills関数で取得したスキル一覧をバッジ形式で描画し、視覚的な一貫性を提供
+ */
+const SkillsCard = () => {
+  const allSkills = getAllSkills();
+
+  return (
+    <Card className="mb-8">
+      <CardHeader>
+        <CardTitle className="text-2xl font-noto-sans-jp">保有スキル</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-wrap gap-2">
+          {allSkills.map((skill) => (
+            <Badge key={skill} className="font-noto-sans-jp">
+              {skill}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+/**
+ * CareerTimelineCard コンポーネント
+ * - 経歴概要をタイムライン形式でカード内に表示
+ * - CAREER_TIMELINE配列をTimelineコンポーネント用に整形して渡し、
+ *   各項目の期間とタイトルを分かりやすく表示
+ */
+const CareerTimelineCard = () => {
+  // CAREER_TIMELINE の各項目を Timeline コンポーネントが利用できる形式に変換
+  const timelineData = CAREER_TIMELINE.map(({ period, title }) => ({
+    title: period,
+    content: (
+      <div className="space-y-4">
+        <h3 className={cn("text-lg font-semibold", "font-noto-sans-jp")}>
+          {title}
+        </h3>
+      </div>
+    ),
+  }));
+
+  return (
+    <Card className="mb-8">
+      <CardHeader>
+        <CardTitle className="text-2xl font-noto-sans-jp">経歴概要</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Timeline data={timelineData} />
+      </CardContent>
+    </Card>
+  );
+};
+
+// ====================================
+// メインコンポーネント (Main Component)
+// ====================================
+/**
+ * AboutDetail コンポーネント
+ * - プロフィール詳細情報の全体レイアウトを管理
+ * - BackButton, ProfileHeader, 各種情報カードを組み合わせ、ページ全体の構成とアニメーションを適用
+ */
+export function AboutDetail() {
+  return (
+    <div
+      className={cn(
+        "container max-w-4xl",
+        "px-4 py-20 mx-auto"
+      )}
+    >
+      {/* ページ上部に戻るボタン */}
+      <BackButton />
+
+      {/* モーション効果を適用してコンテンツのフェードイン・スライドアップを実現 */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={ANIMATION_VARIANTS.initial}
+        animate={ANIMATION_VARIANTS.animate}
+        transition={ANIMATION_VARIANTS.transition}
       >
-        <h1 className="mb-2 text-3xl font-bold font-noto-sans-jp">自己紹介</h1>
-        <p className="mb-8 text-gray-600 dark:text-gray-400 font-noto-sans-jp">
-          {personalInfo.name}のプロフィール
-        </p>
+        {/* セクションの見出しと基本情報 */}
+        <ProfileHeader />
+        <ProfileInfoCard />
+        <SelfPRCard />
+        <SkillsCard />
+        <CareerTimelineCard />
 
-        {/* 基本情報カード */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="text-2xl font-noto-sans-jp">基本情報</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center gap-2">
-              <User className="w-5 h-5 text-gray-500" />
-              <span className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                名前：{personalInfo.name}
-              </span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Globe className="w-5 h-5 text-gray-500" />
-              <span className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                英語名：{personalInfo.nameEn}
-              </span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Mail className="w-5 h-5 text-gray-500" />
-              <span className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                メール：creatorsoasis@outlook.com
-              </span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-gray-500" />
-              <span className="text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                所在地：東京都
-              </span>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* 自己PR */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="text-2xl font-noto-sans-jp">自己PR</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {selfPR.split('\n').map((paragraph) => (
-                <p key={paragraph} className="leading-relaxed text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* スキルタグ */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="text-2xl font-noto-sans-jp">保有スキル</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {allSkills.map((skill) => (
-                <Badge key={skill} className="font-noto-sans-jp">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* 経歴概要 */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="text-2xl font-noto-sans-jp">経歴概要</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Timeline data={[
-              {
-                title: "2022-現在",
-                content: (
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold font-noto-sans-jp">Microsoft Azure セキュリティエンジニア</h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                      日本コンセントリクス株式会社にて、Microsoft Azure のセキュリティ関連サービスの設計・構築・運用に従事。
-                      主にMicrosoft Defender for Cloud、Microsoft Sentinel、Microsoft Entra ID (旧 Azure AD) などのサービスを担当。
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                title: "2020-2022",
-                content: (
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold font-noto-sans-jp">Microsoft 365 エンジニア</h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                      日本コンセントリクス株式会社にて、Microsoft 365 の導入・構築・運用を担当。
-                      Exchange Online、SharePoint Online、Teams などの主要サービスの技術支援に従事。
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                title: "2017-2020",
-                content: (
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold font-noto-sans-jp">不動産営業・電気回路設計</h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 font-noto-sans-jp">
-                      複数の企業で不動産営業および電気回路設計の業務に従事。
-                      顧客との折衝や技術的な課題解決など、多様な経験を積む。
-                    </p>
-                  </div>
-                ),
-              }
-            ]} />
-          </CardContent>
-        </Card>
-
+        {/* ページ下部にトップページに戻るボタン */}
         <div className="mt-8 text-center">
           <Link href="/#about" passHref>
             <Button variant="outline" className="font-noto-sans-jp">
@@ -163,4 +269,4 @@ export function AboutDetail() {
       </motion.div>
     </div>
   );
-} 
+}

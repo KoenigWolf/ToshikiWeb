@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { portfolioItems } from "@/lib/portfolio";
-import { getPortfolioThumbnail } from "@/lib/utils/github";
+import { getPortfolioThumbnail } from "@/lib/github";
 import type { PortfolioItem } from "@/lib/types";
 import { ViewAllButton } from "@/components/atoms/ViewAllButton";
 

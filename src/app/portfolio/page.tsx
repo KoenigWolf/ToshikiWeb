@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PortfolioGrid } from "@/components/organisms/portfolio/PortfolioGrid";
+import { PortfolioGrid } from "@/components/organisms/PortfolioGrid";
 import { BackButton } from "@/components/atoms/BackButton";
 
 // =============================

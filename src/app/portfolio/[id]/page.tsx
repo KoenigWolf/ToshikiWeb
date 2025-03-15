@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { portfolioItems } from "@/lib/portfolio";
-import { PortfolioDetail } from "@/components/organisms/portfolio/PortfolioDetail";
+import { PortfolioDetail } from "@/components/organisms/PortfolioDetail";
 
 // =============================
 // 静的パスを生成
