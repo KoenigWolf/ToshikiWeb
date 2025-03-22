@@ -1,6 +1,7 @@
 // ルートレイアウトコンポーネント
 import type { Metadata } from "next";
-import { SplashCursorWrapper } from "@/components/organisms/SplashCursorWrapper";
+import { SplashCursorWrapper } from "@/components/common/SplashCursorWrapper";
+import { AppWrapper } from "@/components/common/AppWrapper";
 import { fontClasses } from "@/lib/fonts"; // フォント設定を分離
 import "./globals.css";
 
@@ -22,7 +23,9 @@ export default function RootLayout({
         <SplashCursorWrapper />
 
         {/* 各ページのコンテンツ */}
-        {children}
+        <AppWrapper>
+          {children}
+        </AppWrapper>
       </body>
     </html>
   );

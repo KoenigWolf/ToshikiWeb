@@ -1,41 +1,65 @@
 import { notFound } from "next/navigation";
-import { projects } from "@/lib/projects";
-import { ExperienceDetail } from "@/components/organisms/ExperienceDetail";
+import { ExperienceDetail } from "@/components/features/ExperienceDetail";
+import { getProjectById } from "@/lib/projects"; 
+import type { Project } from "@/lib/projects";
+import { generateMetadata as createMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
 
 // =====================================
 // 型定義
 // =====================================
 interface PageProps {
-  params: { id: string };
+  params: {
+    id: string;
+  };
 }
 
 // =====================================
-// 指定されたIDのプロジェクトを取得する関数
+// メタデータを動的に生成
 // =====================================
-const getProjectById = (id: string) => projects.find((project) => project.id === id);
-
-// =====================================
-// 静的パスを生成（SSG対応）
-// =====================================
-export async function generateStaticParams() {
-  return projects.map(({ id }) => ({ id }));
-}
-
-// =====================================
-// Experienceの詳細ページコンポーネント
-// =====================================
-export default function ExperienceDetailPage({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = params;
   const project = getProjectById(id);
 
-  // プロジェクトが存在しない場合、404ページを表示
   if (!project) {
-    return notFound();
+    return createMetadata({
+      title: 'プロジェクト詳細',
+      description: 'プロジェクト詳細ページ',
+      noIndex: true
+    });
   }
 
-  return (
-    <main className="min-h-screen pt-16">
-      <ExperienceDetail projectId={id} />
-    </main>
-  );
+  return createMetadata({
+    title: project.title,
+    description: project.summary || 'プロジェクト詳細ページ',
+    keywords: [...project.tags || [], ...project.technologies || []],
+  });
+}
+
+// =====================================
+// 静的パスを生成
+// =====================================
+export async function generateStaticParams() {
+  // Note: 実際の実装では全てのプロジェクトIDを含める
+  // 例: return getAllProjects().map(project => ({ id: project.id }));
+  return [
+    { id: 'project-1' },
+    { id: 'project-2' },
+    // その他の静的に生成するプロジェクトID
+  ];
+}
+
+// =====================================
+// プロジェクト詳細ページ
+// =====================================
+export default function ExperienceDetailPage({ params }: PageProps) {
+  const { id } = params;
+  
+  // プロジェクトの存在確認
+  const project = getProjectById(id);
+  if (!project) {
+    notFound();
+  }
+  
+  return <ExperienceDetail projectId={id} />;
 }

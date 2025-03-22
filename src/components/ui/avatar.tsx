@@ -1,58 +1,74 @@
 "use client"
 
 import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
 
-// Avatarコンポーネント: アバター全体のルート要素を表示する
-function Avatar({
-  className,
-  ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
-  return (
-    // AvatarPrimitive.Rootを使用して基本的なアバタースタイルを設定
-    <AvatarPrimitive.Root
-      data-slot="avatar" // デバッグやスタイル適用のための識別用属性
-      className={cn(
-        "relative flex size-8 shrink-0 overflow-hidden rounded-full", // 基本スタイル: 固定サイズ、丸い形状
-        className // 追加のカスタムクラスをマージ
-      )}
-      {...props} // その他のpropsを展開
-    />
-  )
-}
+// avatarVariants: アバターのサイズバリエーションを定義
+const avatarVariants = cva(
+  "relative flex shrink-0 overflow-hidden rounded-full",
+  {
+    variants: {
+      size: {
+        sm: "h-10 w-10",
+        md: "h-16 w-16",
+        lg: "h-24 w-24",
+        xl: "h-32 w-32 md:h-40 md:w-40",
+      },
+    },
+    defaultVariants: {
+      size: "md", // デフォルトのサイズは"md"
+    },
+  }
+)
 
-// AvatarImageコンポーネント: アバター画像を表示する
-function AvatarImage({
-  className,
-  ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Image>) {
-  return (
-    // AvatarPrimitive.Imageを使用して画像のスタイルを設定
-    <AvatarPrimitive.Image
-      data-slot="avatar-image" // 識別用のdata-slot属性
-      className={cn("aspect-square size-full", className)} // 正方形にフィットするスタイル
-      {...props} // その他のpropsを展開
-    />
-  )
-}
+// Avatarコンポーネント: プロフィール画像を円形に表示
+const Avatar = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof avatarVariants>
+>(({ className, size, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(avatarVariants({ size }), className)}
+    {...props}
+  />
+))
+Avatar.displayName = "Avatar"
 
-// AvatarFallbackコンポーネント: 画像読み込みに失敗した場合のフォールバック表示
-function AvatarFallback({
-  className,
-  ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+// AvatarImageコンポーネント: アバター内の画像を表示
+// alt属性はpropsから渡される必要があり、コンポーネントの使用者が
+// 適切なアクセシビリティテキストを提供する責任があります
+const AvatarImage = React.forwardRef<
+  HTMLImageElement,
+  React.ImgHTMLAttributes<HTMLImageElement>
+>(({ className, ...props }, ref) => (
+  <img
+    ref={ref}
+    className={cn("aspect-square h-full w-full object-cover", className)}
+    {...props}
+  />
+))
+AvatarImage.displayName = "AvatarImage"
+
+// AvatarFallbackコンポーネント: 画像がない場合のフォールバック表示
+const AvatarFallback = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { asChild?: boolean }
+>(({ className, asChild = false, ...props }, ref) => {
+  const Comp = asChild ? Slot : "div"
   return (
-    // AvatarPrimitive.Fallbackを使用して代替表示のスタイルを設定
-    <AvatarPrimitive.Fallback
-      data-slot="avatar-fallback" // 識別用のdata-slot属性
+    <Comp
+      ref={ref}
       className={cn(
-        "bg-muted flex size-full items-center justify-center rounded-full", // 中央揃えで背景色指定
-        className // 追加のカスタムクラスをマージ
+        "flex h-full w-full items-center justify-center bg-muted text-muted-foreground",
+        className
       )}
-      {...props} // その他のpropsを展開
+      {...props}
     />
   )
-}
+})
+AvatarFallback.displayName = "AvatarFallback"
 
 export { Avatar, AvatarImage, AvatarFallback }

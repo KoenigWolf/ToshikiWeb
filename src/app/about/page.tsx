@@ -1,4 +1,4 @@
-import { AboutDetail } from "@/components/organisms/AboutDetail";
+import { AboutDetail } from "@/components/features/AboutDetail";
 
 // =====================================
 // プロフィール詳細ページ

@@ -1,5 +1,6 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
+
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
@@ -126,5 +127,18 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* 以前は .h-[${height}px] のように動的値を直接記述していましたが、
+     CSSではテンプレートリテラルが利用できないため、下記のように修正します。 */
+
+  /* 動的な高さを設定する場合は、HTML側で --dynamic-height を指定してください */
+  .h-dynamic {
+    height: var(--dynamic-height);
+  }
+
+  /* 固定値の場合は Tailwindの任意値記法で記述可能です（例として400pxのクラス） */
+  .h-\[400px\] {
+    height: 400px;
   }
 }
