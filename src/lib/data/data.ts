@@ -1,53 +1,39 @@
+// data/index.ts
+// アプリ内データの集約エクスポートファイル（後方互換のためのエントリーポイント）
+// 新規コードでは各モジュールからの直接インポートを推奨
 
-// アプリケーションのデータをエクスポートするインデックスファイル
-
-// このファイルは、分割された各データファイルからエクスポートを集約し、
-// アプリケーション全体で使用できるようにします。
-// 
-// 注: このファイルは後方互換性のために維持されています。
-// 新しいコードでは、各専用ファイル（profile.ts, projects.ts, portfolio.ts）から
-// 直接インポートすることをお勧めします。
-
-
-// プロフィール関連のデータをインポート
-
-export { 
+// ========== プロフィール ==========
+export {
   personalInfo,
   certifications,
   skills,
   selfPR,
   getSkillsByCategory,
   getAllSkills,
-  getSortedCertificationsByDate
-} from './profile';
+  getSortedCertificationsByDate,
+} from "./profile";
 
-
-// プロジェクト関連のデータをインポート
-
+// ========== プロジェクト ==========
 export {
   projects,
   getProjectById,
   getProjectsByCompany,
-  getSortedProjectsByDate
-} from './projects';
+  getSortedProjectsByDate,
+} from "./projects";
 
-
-// Portfolio関連のデータをインポート
-
+// ========== ポートフォリオ ==========
 export {
   portfolioItems,
   getPortfolioItemById,
   getPortfolioItemsByTag,
-  getAllPortfolioTags
-} from './portfolio';
+  getAllPortfolioTags,
+} from "./portfolio";
 
-
-// 型定義をエクスポート（後方互換性のため）
-
-export type { 
-  PersonalInfo, 
-  Project, 
-  Certification, 
-  SkillCategory, 
-  PortfolioItem 
-} from './types';
+// ========== 型定義（後方互換用） ==========
+export type {
+  PersonalInfo,
+  Project,
+  Certification,
+  SkillCategory,
+  PortfolioItem,
+} from "./types";
