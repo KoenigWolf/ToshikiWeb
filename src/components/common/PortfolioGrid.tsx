@@ -6,26 +6,17 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PortfolioCard } from "@/components/common/PortfolioCard";
 import { PortfolioFilter } from "@/components/common/PortfolioFilter";
-import { usePortfolioFilterStore } from "@/hooks/features/portfolio/use-portfolio-filter-store";
+import { usePortfolioFilterStore } from "@/hooks/use-portfolio-filter-store";
 import type { PortfolioItem } from "@/lib/types/portfolio";
 
-// ==============================
 // Props型定義
-// ==============================
 interface PortfolioGridProps {
-  /** 表示するポートフォリオアイテムのリスト */
   items: PortfolioItem[];
-
-  /** フィルターUIを表示するか */
   showFilters?: boolean;
-
-  /** カスタムクラス名 */
   className?: string;
 }
 
-// ==============================
 // PortfolioGrid コンポーネント
-// ==============================
 export function PortfolioGrid({
   items,
   showFilters = false,

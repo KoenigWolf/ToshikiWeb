@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { usePortfolioFilterStore } from "@/hooks/features/portfolio/use-portfolio-filter-store";
+import { usePortfolioFilterStore } from "@/hooks/use-portfolio-filter-store";
 import type { PortfolioItem } from "@/lib/types/portfolio";
 import { cn } from "@/lib/utils";
 

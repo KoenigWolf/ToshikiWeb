@@ -1,5 +1,5 @@
-import { Header } from "./Header";
-import { Footer } from "@/components/common/Footer";
+import { Header } from "../Header";
+import { Footer } from "@/components/Footer";
 import { DetailLayoutContent, type DetailLayoutContentProps } from "./DetailLayoutContent";
 import type { ReactNode } from "react";
 

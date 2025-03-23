@@ -41,6 +41,36 @@ const createPortfolioItem = ({
 // ポートフォリオ一覧
 export const portfolioItems: PortfolioItem[] = [
   createPortfolioItem({
+    id: "sound",
+    title: "周波数を視覚化",
+    description: "Web Audio APIを活用したマイク周波数を視覚化するWebアプリ",
+    thumbnail: "/portfolio/oto.webp",
+    demoUrl: "https://soundtest-seven.vercel.app/",
+    githubUrl: "https://github.com/KoenigWolf/soundtest.git",
+    details: {
+      features: [
+        "Web Audio APIを活用した音の周波数を取得し波形に視覚化するWebアプリ",
+        "レスポンシブデザイン対応",
+      ],
+    },
+  }),
+
+  createPortfolioItem({
+    id: "sakura",
+    title: "webeditor",
+    description: "Webエディター",
+    thumbnail: "/portfolio/sakura.webp",
+    demoUrl: "https://sakura-editor.vercel.app/",
+    githubUrl: "https://github.com/KoenigWolf/sakura-editor.git",
+    details: {
+      features: [
+        "Webエディター",
+        "レスポンシブデザイン対応",
+      ],
+    },
+  }),
+
+  createPortfolioItem({
     id: "lp-kids",
     title: "留学サービスLP",
     description: "LPの基本構造を汎用的に使用するためのテンプレート",

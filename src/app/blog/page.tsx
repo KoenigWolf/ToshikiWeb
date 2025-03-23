@@ -1,6 +1,6 @@
 import { generateMetadata } from "@/lib/metadata";
-import { Header } from "@/components/common/Header";
-import { Footer } from "@/components/common/Footer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";

@@ -9,7 +9,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Toshiki Sakuta | Portfolio",
   description:
-    "Toshiki SakutaのPortfolioサイトです。クラウド技術、業務自動化、インフラ運用、Web開発の経験を紹介しています。",
+    "Portfolioサイトです。クラウド技術、業務自動化、インフラ運用、Web開発の経験を紹介しています。",
 };
 
 // ルートレイアウトコンポーネント：すべてのページの共通レイアウトを提供

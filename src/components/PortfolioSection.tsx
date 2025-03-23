@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-import { PortfolioCard } from "../common/PortfolioCard";
-
+import { PortfolioCard } from "./common/PortfolioCard";
 import { portfolioItems as defaultItems } from "@/lib/data/portfolio";
 import { getFilteredItems } from "@/lib/hooks/portfolio";
 import { usePortfolioFilterStore } from "@/lib/hooks/features/portfolio";
@@ -16,16 +14,12 @@ import { Filter, ArrowRight } from "lucide-react";
 // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import { escape } from "lodash";
 
-// ==============================
 // Props
-// ==============================
 interface PortfolioSectionProps {
   items?: PortfolioItem[];
 }
 
-// ==============================
 // Main Portfolio Section
-// ==============================
 export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps) {
   const { filter, setFilter } = usePortfolioFilterStore();
 
@@ -66,8 +60,9 @@ export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
+            className="flex h-full"
           >
-            <PortfolioCard item={item} />
+            <PortfolioCard item={item} className="flex-1 w-full" />
           </motion.div>
         ))}
       </div>
@@ -84,9 +79,7 @@ export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps
   );
 }
 
-// ==============================
 // フィルターボタン（shadcn/ui Button 拡張）
-// ==============================
 interface TagFilterButtonProps {
   label: string;
   isActive: boolean;

@@ -1,14 +1,14 @@
 // Homeページのメインコンポーネント（改修版）
 import { Suspense } from 'react';
-import { Header } from '@/components/common/Header';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { ExperienceSection } from '@/components/sections/ExperienceSection';
-import { SkillsSection } from '@/components/sections/SkillsSection';
-import { CertificationsSection } from '@/components/sections/CertificationsSection';
-import { AboutSection } from '@/components/sections/AboutSection';
-import { PortfolioSection } from '@/components/sections/PortfolioSection';
-import { ContactSection } from '@/components/sections/ContactSection';
-import { Footer } from '@/components/common/Footer';
+import { Header } from '@/components/Header';
+import { HeroSection } from '@/components/HeroSection';
+import { ExperienceSection } from '@/components/ExperienceSection';
+import { SkillsSection } from '@/components/SkillsSection';
+import { CertificationsSection } from '@/components/CertificationsSection';
+import { AboutSection } from '@/components/AboutSection';
+import { PortfolioSection } from '@/components/PortfolioSection';
+import { ContactSection } from '@/components/ContactSection';
+import { Footer } from '@/components/Footer';
 import { getPortfolioItems } from "@/lib/server/portfolio";
 
 // 優先度の高いセクション群（固定部分）

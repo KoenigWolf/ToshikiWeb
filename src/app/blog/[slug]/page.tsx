@@ -1,7 +1,7 @@
 import { generateMetadata as createMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/common/Header";
-import { Footer } from "@/components/common/Footer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { OptimizedImage } from "@/components/common/OptimizedImage";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

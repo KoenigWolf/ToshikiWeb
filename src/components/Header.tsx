@@ -14,9 +14,7 @@ import {
 import type { Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// ==============================
 // 型定義
-// ==============================
 type NavItem = { name: string; href: string };
 type SocialLinkProps = {
   icon: React.ElementType;
@@ -25,9 +23,7 @@ type SocialLinkProps = {
   isExternal?: boolean;
 };
 
-// ==============================
 // 定数
-// ==============================
 const SCROLL_THRESHOLD = 10;
 
 const NAV_ITEMS: NavItem[] = [
@@ -62,9 +58,7 @@ const SOCIAL_LINKS: SocialLinkProps[] = [
   },
 ];
 
-// ==============================
 // アニメーション
-// ==============================
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: -20 },
   visible: (delay = 0) => ({
@@ -80,9 +74,7 @@ const mobileMenuVariants: Variants = {
   exit: { opacity: 0, height: 0 },
 };
 
-// ==============================
 // Header コンポーネント
-// ==============================
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -114,7 +106,7 @@ export function Header() {
             animate="visible"
             className="text-2xl font-semibold font-noto-sans-jp"
           >
-            Toshiki Sakuta
+            Profile
           </motion.div>
         </Link>
 
@@ -157,9 +149,7 @@ export function Header() {
   );
 }
 
-// ==============================
 // ナビゲーションリンク
-// ==============================
 const NavItemLink = ({ name, href, delay }: NavItem & { delay: number }) => (
   <motion.li variants={fadeInUp} initial="hidden" animate="visible" custom={delay}>
     <Link
@@ -172,9 +162,7 @@ const NavItemLink = ({ name, href, delay }: NavItem & { delay: number }) => (
   </motion.li>
 );
 
-// ==============================
 // ソーシャルリンクボタン
-// ==============================
 const SocialLink = ({
   icon: Icon,
   href,
@@ -198,9 +186,7 @@ const SocialLink = ({
   );
 };
 
-// ==============================
 // モバイルメニュー
-// ==============================
 const MobileMenu = ({ closeMenu }: { closeMenu: () => void }) => (
   <motion.div
     variants={mobileMenuVariants}

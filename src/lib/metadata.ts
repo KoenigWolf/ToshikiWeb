@@ -9,9 +9,7 @@ type MetadataParams = {
   locale?: string;
 };
 
-/**
- * ベースとなるメタデータ
- */
+// ベースとなるメタデータ
 const baseMetadata: Metadata = {
   title: {
     default: "Toshiki Sakuta | Portfolio",

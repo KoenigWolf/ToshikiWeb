@@ -57,11 +57,6 @@ export default async function PortfolioDetailPage({
           </div>
         )}
 
-        {/* プロジェクト期間 */}
-        <Section title="プロジェクト期間">
-          <p className="text-muted-foreground">{htmlEscape(portfolio.period)}</p>
-        </Section>
-
         {/* 概要 */}
         <Section title="概要">
           <p>{htmlEscape(portfolio.description)}</p>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { useFadeInUp } from "@/hooks/common/use-fade-in-up";
+import { useFadeInUp } from "@/hooks/use-fade-in-up";
 import { getPortfolioThumbnail } from "@/lib/api/github";
 import type { PortfolioItem } from "@/lib/types/portfolio";
 
@@ -22,13 +22,13 @@ export function PortfolioCard({ item, delay = 0, className = "" }: PortfolioCard
   return (
     <motion.div {...animation} className={className}>
       {/* カード全体がリンク */}
-      <Card asChild className="h-full transition-all duration-300 group hover:shadow-lg">
-        <Link href={`/portfolio/${item.id}`} aria-label={`${item.title}の詳細を見る`}>
+      <Card className="flex flex-col h-full transition-all duration-300 group hover:shadow-lg">
+        <Link href={`/portfolio/${item.id}`} aria-label={`${item.title}の詳細を見る`} className="flex flex-col h-full">
           
           {/* サムネイル画像 */}
-          <div className="relative h-48 overflow-hidden rounded-lg">
+          <div className="relative w-full h-48 overflow-hidden rounded-lg">
             <Image
-              src={getPortfolioThumbnail(item.thumbnail, item.githubUrl)}
+              src={getPortfolioThumbnail(item.image || "", item.githubUrl)}
               alt={item.title}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -48,7 +48,7 @@ export function PortfolioCard({ item, delay = 0, className = "" }: PortfolioCard
             </p>
           </CardContent>
 
-          <CardFooter className="flex items-center justify-between p-4 pt-0">
+          <CardFooter className="flex items-center justify-between p-4 pt-0 mt-auto">
             {/* タグ（2つまで + 他の件数表示） */}
             <div className="flex flex-wrap gap-1">
               {item.tags.slice(0, 2).map((tag) => (

@@ -28,8 +28,7 @@ interface ProfileInfoItem {
   value: string;
 }
 
-// CareerTimelineItem
-// 経歴タイムラインに表示する各項目の期間とタイトルを定義
+// CareerTimelineItem：経歴タイムラインに表示する各項目の期間とタイトルを定義
 interface CareerTimelineItem {
   period: string;
   title: string;
@@ -47,8 +46,7 @@ const ANIMATION_VARIANTS = {
   transition: { duration: 0.5 },
 };
 
-// PROFILE_INFO_ITEMS
-// ・基本情報カードで表示する項目（アイコン、ラベル、値）の定義
+// PROFILE_INFO_ITEMS：基本情報カードで表示する項目（アイコン、ラベル、値）の定義
 const PROFILE_INFO_ITEMS: ProfileInfoItem[] = [
   {
     icon: <User className="w-5 h-5 text-gray-500" />,
@@ -67,8 +65,7 @@ const PROFILE_INFO_ITEMS: ProfileInfoItem[] = [
   },
 ];
 
-// CAREER_TIMELINE
-// 経歴タイムラインに表示する各項目の期間とタイトルの定義
+// CAREER_TIMELINE：経歴タイムラインに表示する各項目の期間とタイトルの定義
 const CAREER_TIMELINE: CareerTimelineItem[] = [
   { period: "2022", title: "Microsoft Azure Project" },
   { period: "2021", title: "Dynamics 365 Project" },

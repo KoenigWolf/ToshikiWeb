@@ -6,12 +6,12 @@ import { Suspense } from "react";
 import { getPortfolioItems } from "@/lib/server/portfolio";
 import { PortfolioGrid } from "@/components/common/PortfolioGrid";
 import type { Metadata } from "next";
-import { Header } from "@/components/common/Header";
-import { Footer } from "@/components/common/Footer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
-  title: "ポートフォリオ | Toshiki Sakuta",
+  title: "Portfolio",
   description: "私のこれまでの制作物をご紹介します。",
 };
 
