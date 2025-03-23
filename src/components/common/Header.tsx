@@ -4,7 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, MailOpen, AlignJustify, XCircle } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  MailOpen,
+  AlignJustify,
+  XCircle,
+} from "lucide-react";
 import type { Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -33,14 +39,27 @@ const NAV_ITEMS: NavItem[] = [
   { name: "PR", href: "#about" },
 ];
 
-// メールアドレスは分割してBotに読み取られにくく
 const emailUser = "creatorsoasis";
 const emailDomain = "outlook.com";
 
 const SOCIAL_LINKS: SocialLinkProps[] = [
-  { icon: Github, href: "https://github.com/KoenigWolf", label: "GitHub", isExternal: true },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/toshikisakuta/", label: "LinkedIn", isExternal: true },
-  { icon: MailOpen, href: `mailto:${emailUser}@${emailDomain}`, label: "メールで連絡" },
+  {
+    icon: Github,
+    href: "https://github.com/KoenigWolf",
+    label: "GitHub",
+    isExternal: true,
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/toshikisakuta/",
+    label: "LinkedIn",
+    isExternal: true,
+  },
+  {
+    icon: MailOpen,
+    href: `mailto:${emailUser}@${emailDomain}`,
+    label: "メールで連絡",
+  },
 ];
 
 // ==============================
@@ -81,7 +100,9 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled
+          ? "bg-background/80 backdrop-blur-md shadow-sm"
+          : "bg-transparent"
       )}
     >
       <div className="flex items-center justify-between max-w-screen-xl px-4 py-4 mx-auto">
@@ -97,7 +118,7 @@ export function Header() {
           </motion.div>
         </Link>
 
-        {/* デスクトップナビゲーション */}
+        {/* ナビゲーション（デスクトップ） */}
         <nav className="items-center hidden space-x-6 md:flex">
           <ul className="flex space-x-6">
             {NAV_ITEMS.map((item, i) => (
@@ -111,7 +132,7 @@ export function Header() {
           </div>
         </nav>
 
-        {/* モバイルメニューアイコン */}
+        {/* ハンバーガーメニュー（モバイル） */}
         <div className="md:hidden">
           <Button
             variant="ghost"
@@ -119,12 +140,16 @@ export function Header() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label="メニューを開閉"
           >
-            {isOpen ? <XCircle className="w-6 h-6" /> : <AlignJustify className="w-6 h-6" />}
+            {isOpen ? (
+              <XCircle className="w-6 h-6" />
+            ) : (
+              <AlignJustify className="w-6 h-6" />
+            )}
           </Button>
         </div>
       </div>
 
-      {/* モバイルメニュー */}
+      {/* モバイルメニュー表示 */}
       <AnimatePresence>
         {isOpen && <MobileMenu closeMenu={() => setIsOpen(false)} />}
       </AnimatePresence>
@@ -133,7 +158,7 @@ export function Header() {
 }
 
 // ==============================
-// ナビゲーション項目
+// ナビゲーションリンク
 // ==============================
 const NavItemLink = ({ name, href, delay }: NavItem & { delay: number }) => (
   <motion.li variants={fadeInUp} initial="hidden" animate="visible" custom={delay}>
@@ -184,7 +209,8 @@ const MobileMenu = ({ closeMenu }: { closeMenu: () => void }) => (
     exit="exit"
     className="shadow-md bg-background md:hidden"
   >
-    <div className="max-w-screen-xl px-4 py-4 mx-auto">
+    <div className="max-w-screen-xl px-4 py-4 mx-auto space-y-6">
+      {/* ナビゲーション */}
       <ul className="space-y-4">
         {NAV_ITEMS.map(({ name, href }) => (
           <li key={name}>
@@ -198,6 +224,13 @@ const MobileMenu = ({ closeMenu }: { closeMenu: () => void }) => (
           </li>
         ))}
       </ul>
+
+      {/* ソーシャルリンク */}
+      <div className="flex justify-center gap-4 pt-4 border-t border-border">
+        {SOCIAL_LINKS.map((link, i) => (
+          <SocialLink key={link.href} {...link} delay={i * 0.1} />
+        ))}
+      </div>
     </div>
   </motion.div>
 );
