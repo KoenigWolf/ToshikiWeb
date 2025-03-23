@@ -10,47 +10,53 @@ import { SectionTitle } from "@/components/ui/section-title";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { PortfolioItem } from "@/lib/types/portfolio";
+import { Filter, ArrowRight } from "lucide-react";
+import { escape } from "lodash";
 
+// ==============================
+// Props
+// ==============================
 interface PortfolioSectionProps {
   items?: PortfolioItem[];
 }
 
+// ==============================
+// Main Portfolio Section
+// ==============================
 export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps) {
   const { filter, setFilter } = usePortfolioFilterStore();
+
+  // 現在のフィルターに一致するアイテムを取得
   const filteredItems = getFilteredItems(items, filter);
 
-  const tags = Array.from(new Set(items.flatMap((item: PortfolioItem) => item.tags)));
+  // 全タグのユニークな一覧
+  const tags = Array.from(new Set(items.flatMap((item) => item.tags)));
 
   return (
     <Section id="portfolio" variant="muted">
-      <SectionTitle 
-        title="Portfolio" 
-        animated
-        centered
-      />
+      <SectionTitle title="Portfolio" animated centered />
 
+      {/* タグフィルター */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
-        <Button
-          variant={filter === "all" ? "default" : "outline"}
+        <TagFilterButton
+          label="全て"
+          isActive={filter === "all"}
           onClick={() => setFilter("all")}
-          className="font-noto-sans-jp"
-        >
-          全て
-        </Button>
+          icon={<Filter className="w-4 h-4 mr-1" />}
+        />
         {tags.map((tag) => (
-          <Button
+          <TagFilterButton
             key={tag}
-            variant={filter === tag ? "default" : "outline"}
+            label={tag}
+            isActive={filter === tag}
             onClick={() => setFilter(tag)}
-            className="font-noto-sans-jp"
-          >
-            {tag}
-          </Button>
+          />
         ))}
       </div>
 
+      {/* ポートフォリオカード */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredItems.map((item: PortfolioItem, index: number) => (
+        {filteredItems.map((item, index) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: 20 }}
@@ -62,12 +68,42 @@ export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps
           </motion.div>
         ))}
       </div>
-      
+
+      {/* 「もっと見る」 */}
       <div className="mt-8 text-center">
         <Button asChild>
-          <Link href="/portfolio">もっと見る</Link>
+          <Link href="/portfolio" aria-label="ポートフォリオ一覧ページへ">
+            もっと見る <ArrowRight className="w-4 h-4 ml-2" />
+          </Link>
         </Button>
       </div>
     </Section>
   );
-} 
+}
+
+// ==============================
+// フィルターボタン（shadcn/ui Button 拡張）
+// ==============================
+interface TagFilterButtonProps {
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+  icon?: React.ReactNode;
+}
+
+const TagFilterButton = ({
+  label,
+  isActive,
+  onClick,
+  icon,
+}: TagFilterButtonProps) => (
+  <Button
+    variant={isActive ? "default" : "outline"}
+    size="sm"
+    onClick={onClick}
+    className="flex items-center font-noto-sans-jp"
+  >
+    {icon}
+    {escape(label)}
+  </Button>
+);
