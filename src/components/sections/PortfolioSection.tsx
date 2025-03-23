@@ -25,7 +25,6 @@ export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps
     <Section id="portfolio" variant="muted">
       <SectionTitle 
         title="Portfolio" 
-        subtitle="製作実績"
         animated
         centered
       />

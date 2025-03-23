@@ -1,23 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Form, 
-  FormControl, 
-  FormField, 
-  FormItem, 
-  FormLabel, 
-  FormMessage 
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "../ui/button";
 import { Send } from "lucide-react";
 
-// Validation schema
+// バリデーションスキーマ
 const formSchema = z.object({
   name: z.string().min(2, { message: "お名前は2文字以上で入力してください" }),
   email: z.string().email({ message: "有効なメールアドレスを入力してください" }),
@@ -27,9 +28,51 @@ const formSchema = z.object({
 
 type ContactFormValues = z.infer<typeof formSchema>;
 
+// フィールド共通パーツ
+type FieldGroupProps = {
+  name: keyof ContactFormValues;
+  label: string;
+  placeholder: string;
+  isTextarea?: boolean;
+  form: ReturnType<typeof useForm<ContactFormValues>>;
+};
+
+// 単一のフォームフィールドを描画する汎用コンポーネント
+function FieldGroup({
+  name,
+  label,
+  placeholder,
+  isTextarea = false,
+  form,
+}: FieldGroupProps) {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className="font-noto-sans-jp">{label}</FormLabel>
+          <FormControl>
+            {isTextarea ? (
+              <Textarea
+                placeholder={placeholder}
+                className="min-h-32"
+                {...field}
+              />
+            ) : (
+              <Input placeholder={placeholder} {...field} />
+            )}
+          </FormControl>
+          <FormMessage className="font-noto-sans-jp" />
+        </FormItem>
+      )}
+    />
+  );
+}
+
+// お問い合わせフォーム本体
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
@@ -41,103 +84,70 @@ export function ContactForm() {
     },
   });
 
+  // 送信処理
   async function onSubmit(values: ContactFormValues) {
-    setIsSubmitting(true);
-    
+    setStatus("submitting");
+
     try {
-      // Here you would normally send the form data to your API
+      // 通常はここでAPIにPOSTする
       console.log(values);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Reset the form and show success message
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       form.reset();
-      setIsSuccess(true);
-      
-      // Hide success message after 5 seconds
-      setTimeout(() => setIsSuccess(false), 5000);
+      setStatus("success");
+
+      // 一定時間後にメッセージを非表示に
+      setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
       console.error("Error submitting form:", error);
-    } finally {
-      setIsSubmitting(false);
+      setStatus("idle");
     }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        {isSuccess && (
-          <div className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+        {/* 成功メッセージ */}
+        {status === "success" && (
+          <div className="p-4 text-sm text-center text-green-700 bg-green-100 rounded-lg">
             お問い合わせが送信されました。ありがとうございます。
           </div>
         )}
-        
-        <FormField
-          control={form.control}
+
+        {/* フォーム各項目 */}
+        <FieldGroup
           name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-noto-sans-jp">お名前</FormLabel>
-              <FormControl>
-                <Input placeholder="山田 太郎" {...field} />
-              </FormControl>
-              <FormMessage className="font-noto-sans-jp" />
-            </FormItem>
-          )}
+          label="お名前"
+          placeholder="山田 太郎"
+          form={form}
         />
-        
-        <FormField
-          control={form.control}
+        <FieldGroup
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-noto-sans-jp">メールアドレス</FormLabel>
-              <FormControl>
-                <Input placeholder="example@example.com" {...field} />
-              </FormControl>
-              <FormMessage className="font-noto-sans-jp" />
-            </FormItem>
-          )}
+          label="メールアドレス"
+          placeholder="example@example.com"
+          form={form}
         />
-        
-        <FormField
-          control={form.control}
+        <FieldGroup
           name="subject"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-noto-sans-jp">件名</FormLabel>
-              <FormControl>
-                <Input placeholder="お問い合わせ内容" {...field} />
-              </FormControl>
-              <FormMessage className="font-noto-sans-jp" />
-            </FormItem>
-          )}
+          label="件名"
+          placeholder="お問い合わせ内容"
+          form={form}
         />
-        
-        <FormField
-          control={form.control}
+        <FieldGroup
           name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-noto-sans-jp">メッセージ</FormLabel>
-              <FormControl>
-                <Textarea 
-                  placeholder="ご質問・ご依頼内容をご記入ください"
-                  className="min-h-32"
-                  {...field} 
-                />
-              </FormControl>
-              <FormMessage className="font-noto-sans-jp" />
-            </FormItem>
-          )}
+          label="メッセージ"
+          placeholder="ご質問・ご依頼内容をご記入ください"
+          isTextarea
+          form={form}
         />
-        
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+
+        {/* 送信ボタン */}
+        <Button type="submit" className="w-full" disabled={status === "submitting"}>
           <Send className="w-4 h-4 mr-2" />
-          {isSubmitting ? "送信中..." : "送信する"}
+          {status === "submitting" ? "送信中..." : "送信する"}
         </Button>
       </form>
     </Form>
   );
-} 
+}

@@ -14,7 +14,6 @@ export function AboutSection() {
     <Section id="about" variant="default">
       <SectionTitle
         title="PR"
-        subtitle="自己紹介"
         animated
         centered
       />

@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 
-// =====================================
 // 共通アニメーション設定
-// =====================================
 const fadeInUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -16,9 +14,7 @@ const fadeInUp = (delay = 0) => ({
   viewport: { once: true },
 });
 
-// =====================================
 // フッターコンポーネント
-// =====================================
 export function Footer() {
   // スクロールをスムーズにトップへ移動
   const scrollToTop = useCallback(() => {
@@ -59,9 +55,7 @@ export function Footer() {
   );
 }
 
-// =====================================
 // SNSリンクコンポーネント
-// =====================================
 interface SocialLinkProps {
   href: string;
   icon: React.ElementType;

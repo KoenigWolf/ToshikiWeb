@@ -11,7 +11,6 @@ export function ContactSection() {
     <Section id="contact" variant="primary">
       <SectionTitle 
         title="Contact" 
-        subtitle="お問い合わせ"
         animated
         centered
       />

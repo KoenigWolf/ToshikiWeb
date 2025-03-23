@@ -8,7 +8,7 @@ import { CertificationsSection } from '@/components/sections/CertificationsSecti
 import { AboutSection } from '@/components/sections/AboutSection';
 import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { ContactSection } from '@/components/sections/ContactSection';
-import { FooterSection } from '@/components/sections/FooterSection';
+import { Footer } from '@/components/common/Footer';
 import { getPortfolioItems } from "@/lib/server/portfolio";
 
 // 優先度の高いセクション群（固定部分）
@@ -61,7 +61,7 @@ export default async function Home() {
       priority: false,
     },
     { id: 'contact', Component: ContactSection, priority: false },
-    { id: 'footer', Component: FooterSection, priority: false },
+    { id: 'footer', Component: Footer, priority: false },
   ];
 
   return (

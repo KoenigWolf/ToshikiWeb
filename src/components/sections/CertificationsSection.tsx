@@ -13,7 +13,6 @@ export function CertificationsSection() {
     <Section id="certifications" variant="muted">
       <SectionTitle
         title="Shikaku"
-        subtitle="資格・認定"
         animated
         centered
       />

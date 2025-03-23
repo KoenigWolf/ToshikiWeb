@@ -99,14 +99,10 @@ const BackButton = () => {
   );
 };
 
-/**
- * ProfileHeader コンポーネント
- * - セクションのタイトルとサブタイトルを表示し、自己紹介の文脈を提供
- */
+// ProfileHeader コンポーネント
 const ProfileHeader = () => {
   return (
     <>
-      <h1 className="mb-2 text-3xl font-bold font-noto-sans-jp">自己紹介</h1>
       <p className="mb-8 text-gray-600 dark:text-gray-400 font-noto-sans-jp">
         {personalInfo.name}のプロフィール
       </p>
@@ -114,11 +110,8 @@ const ProfileHeader = () => {
   );
 };
 
-/**
- * ProfileInfoCard コンポーネント
- * - 基本情報をカード形式で表示
- * - 各情報項目はアイコン・ラベル・値の組み合わせで表現され、ループ処理で展開
- */
+// ProfileInfoCard コンポーネント：基本情報をカード形式で表示
+// 各情報項目はアイコン・ラベル・値の組み合わせで表現され、ループ処理で展開
 const ProfileInfoCard = () => {
   return (
     <Card className="mb-8">

@@ -1,5 +1,5 @@
 import { Header } from "./Header";
-import { FooterSection } from "@/components/sections/FooterSection";
+import { Footer } from "@/components/common/Footer";
 import { DetailLayoutContent, type DetailLayoutContentProps } from "./DetailLayoutContent";
 import type { ReactNode } from "react";
 
@@ -16,7 +16,7 @@ export function DetailLayout(props: DetailLayoutProps) {
     <>
       <Header />
       <DetailLayoutContent {...props} />
-      <FooterSection />
+      <Footer />
     </>
   );
 } 

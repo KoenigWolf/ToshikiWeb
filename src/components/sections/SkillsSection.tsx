@@ -15,7 +15,6 @@ export function SkillsSection() {
     <Section id="skills" variant="default">
       <SectionTitle
         title="Skill"
-        subtitle="専門技術"
         animated
         centered
       />
