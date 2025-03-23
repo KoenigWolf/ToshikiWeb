@@ -5,9 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { certifications } from "@/lib/profile";
 import type { Certification } from "@/lib/profile";
 
-// =====================================
+
 // 資格詳細表示コンポーネント
-// =====================================
+
 export interface CertificationDetailProps {
   certId: string;
 }

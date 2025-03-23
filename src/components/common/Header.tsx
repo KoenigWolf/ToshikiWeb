@@ -7,15 +7,11 @@ import type { Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 
-// =====================================
 // 型定義
-// =====================================
 type NavItem = { name: string; href: string };
 type SocialLinkProps = { icon: React.ElementType; href: string; label: string; isExternal?: boolean };
 
-// =====================================
 // 定数
-// =====================================
 const SCROLL_THRESHOLD = 10;
 
 // ナビゲーション項目
@@ -35,9 +31,8 @@ const SOCIAL_LINKS: SocialLinkProps[] = [
   { icon: Mail, href: "mailto:creatorsoasis@outlook.com", label: "メールで連絡" },
 ];
 
-// =====================================
 // アニメーション設定 (variants)
-// =====================================
+
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: -20 },
   visible: (delay = 0) => ({
@@ -53,9 +48,9 @@ const mobileMenuVariants: Variants = {
   exit: { opacity: 0, height: 0 },
 };
 
-// =====================================
+
 // ヘッダーコンポーネント
-// =====================================
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -117,9 +112,9 @@ export function Header() {
   );
 }
 
-// =====================================
+
 // ナビゲーション項目コンポーネント
-// =====================================
+
 const NavItemLink = ({ name, href, delay }: NavItem & { delay: number }) => (
   <motion.li variants={fadeInUp} initial="hidden" animate="visible" custom={delay}>
     <Link href={href} className="text-gray-700 transition-colors dark:text-gray-300 hover:text-primary font-noto-sans-jp" aria-label={name}>
@@ -128,9 +123,9 @@ const NavItemLink = ({ name, href, delay }: NavItem & { delay: number }) => (
   </motion.li>
 );
 
-// =====================================
+
 // ソーシャルリンクコンポーネント
-// =====================================
+
 const SocialLink = ({ icon: Icon, href, label, isExternal, delay }: SocialLinkProps & { delay: number }) => (
   <motion.div variants={fadeInUp} initial="hidden" animate="visible" custom={delay}>
     <Button size="icon" variant="ghost" asChild aria-label={label}>
@@ -141,9 +136,9 @@ const SocialLink = ({ icon: Icon, href, label, isExternal, delay }: SocialLinkPr
   </motion.div>
 );
 
-// =====================================
+
 // モバイルメニューコンポーネント
-// =====================================
+
 const MobileMenu = ({ closeMenu }: { closeMenu: () => void }) => (
   <motion.div variants={mobileMenuVariants} initial="hidden" animate="visible" exit="exit" className="bg-white shadow-lg md:hidden dark:bg-gray-900">
     <div className="container px-4 py-4 mx-auto">

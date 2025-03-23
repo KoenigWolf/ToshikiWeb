@@ -1,6 +1,6 @@
-// =====================================
+
 // フォームハンドリング用カスタムフック
-// =====================================
+
 
 import { useState, useCallback, type FormEvent, type ChangeEvent } from 'react';
 import * as validator from '@/lib/utils/validation';

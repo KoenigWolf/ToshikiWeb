@@ -1,13 +1,13 @@
 "use client";
 
-// =====================================
+
 // クライアントコンポーネント：SplashCursor のラッパー
-// =====================================
+
 import { SplashCursor } from "@/components/ui/splash-cursor";
 
-// =====================================
+
 // SplashCursor の設定を統一し、再利用しやすくする
-// =====================================
+
 export function SplashCursorWrapper() {
   return (
     <SplashCursor 

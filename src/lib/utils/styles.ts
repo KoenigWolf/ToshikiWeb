@@ -1,6 +1,6 @@
-// =====================================
+
 // スタイル関連のユーティリティ関数
-// =====================================
+
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

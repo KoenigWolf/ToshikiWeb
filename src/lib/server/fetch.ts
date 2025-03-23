@@ -7,9 +7,9 @@ import 'server-only';
 import { cache } from 'react';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
-// =====================================
+
 // 型定義
-// =====================================
+
 
 /**
  * データキャッシュのオプション
@@ -37,9 +37,9 @@ export type CacheOptions = {
   fetchOptions?: RequestInit;
 };
 
-// =====================================
+
 // 関数
-// =====================================
+
 
 /**
  * データを取得する関数

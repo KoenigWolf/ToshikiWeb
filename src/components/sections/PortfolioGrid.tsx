@@ -7,9 +7,9 @@ import type { PortfolioItem } from "@/lib/types/portfolio";
 import { PortfolioCard } from "@/components/features/PortfolioCard";
 import { PortfolioFilter } from "@/components/features/PortfolioFilter";
 
-// =====================================
+
 // 型定義
-// =====================================
+
 interface PortfolioGridProps {
   /**
    * 表示するアイテムのリスト
@@ -27,9 +27,9 @@ interface PortfolioGridProps {
   className?: string;
 }
 
-// =====================================
+
 // ポートフォリオグリッドコンポーネント
-// =====================================
+
 export function PortfolioGrid({
   items,
   showFilters = false,

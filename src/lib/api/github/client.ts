@@ -1,6 +1,6 @@
-// =====================================
+
 // GitHub APIクライアント
-// =====================================
+
 import type { GitHubRepoInfo, GitHubReadmeResponse } from './types';
 
 /**

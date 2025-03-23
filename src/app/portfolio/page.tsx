@@ -1,6 +1,6 @@
-// =====================================
+
 // ポートフォリオページ
-// =====================================
+
 
 import { Suspense } from "react";
 import { getPortfolioItems } from "@/lib/server/portfolio";

@@ -5,27 +5,27 @@ import { generateMetadata as createMetadata } from "@/lib/metadata";
 import type { SkillCategory } from "@/lib/profile";
 import type { Metadata } from "next";
 
-// =====================================
+
 // 型定義
-// =====================================
+
 interface PageProps {
   params: {
     category: string;
   };
 }
 
-// =====================================
+
 // 静的パスを生成
-// =====================================
+
 export async function generateStaticParams() {
   return skills.map((skill: SkillCategory) => ({ 
     category: encodeURIComponent(skill.category) 
   }));
 }
 
-// =====================================
+
 // メタデータを動的に生成
-// =====================================
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const category = decodeURIComponent(params.category);
   const skillCategory = skills.find((skill: SkillCategory) => skill.category === category);
@@ -45,9 +45,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-// =====================================
+
 // Skillsの詳細ページ
-// =====================================
+
 export default function SkillDetailPage({ params }: PageProps) {
   const category = decodeURIComponent(params.category);
   const skillCategory = skills.find((skill: SkillCategory) => skill.category === category);

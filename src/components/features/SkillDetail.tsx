@@ -8,9 +8,9 @@ import type { Project } from "@/lib/projects";
 import type { SkillCategory } from "@/lib/profile";
 import Link from "next/link";
 
-// =====================================
+
 // スキル詳細表示コンポーネント
-// =====================================
+
 
 export interface SkillDetailProps {
   category: string;

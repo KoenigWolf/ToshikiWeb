@@ -7,9 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { detailPageAnimations } from "@/lib/animations";
 import type { ReactNode } from "react";
 
-// =====================================
+
 // 詳細ページのアニメーション付きコンテンツ
-// =====================================
+
 export interface DetailLayoutContentProps {
   /** ページのタイトル */
   title?: string;
