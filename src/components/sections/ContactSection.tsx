@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ContactForm } from "../features/ContactForm";
+import { ContactForm } from "../common/ContactForm";
 import { Mail } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { SectionTitle } from "@/components/ui/section-title";

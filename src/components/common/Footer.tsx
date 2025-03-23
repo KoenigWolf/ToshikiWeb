@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useCallback } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-// 共通アニメーション設定
+// アニメーション設定
 const fadeInUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -14,19 +14,25 @@ const fadeInUp = (delay = 0) => ({
   viewport: { once: true },
 });
 
+// SNSリンク定義（追加・変更が簡単）
+const SNS_LINKS = [
+  { href: "https://github.com/KoenigWolf", icon: Github, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/toshikisakuta/", icon: Linkedin, label: "LinkedIn" },
+  { href: "mailto:creatorsoasis@outlook.com", icon: Mail, label: "メール" },
+];
+
 // フッターコンポーネント
 export function Footer() {
-  // スクロールをスムーズにトップへ移動
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="py-12 bg-gray-100 dark:bg-gray-900">
+    <footer className="py-12 bg-muted text-muted-foreground">
       <div className="container flex flex-col items-center px-4 mx-auto">
-        {/* トップへ戻るボタン */}
+        {/* トップへ戻る */}
         <motion.div {...fadeInUp()} className="mb-8">
           <Button
             onClick={scrollToTop}
@@ -41,31 +47,29 @@ export function Footer() {
 
         {/* SNSリンク */}
         <motion.div {...fadeInUp(0.1)} className="flex mb-6 space-x-4">
-          <SocialLink href="https://github.com/KoenigWolf" icon={Github} label="GitHub" />
-          <SocialLink href="https://www.linkedin.com/in/toshikisakuta/" icon={Linkedin} label="LinkedIn" />
-          <SocialLink href="mailto:creatorsoasis@outlook.com" icon={Mail} label="メール" />
+          {SNS_LINKS.map(({ href, icon: Icon, label }) => (
+            <Button
+              key={label}
+              asChild
+              size="icon"
+              variant="ghost"
+              aria-label={label}
+            >
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                <Icon className="w-5 h-5" />
+              </a>
+            </Button>
+          ))}
         </motion.div>
 
         {/* コピーライト */}
-        <motion.p {...fadeInUp(0.2)} className="text-center text-gray-600 dark:text-gray-400 font-noto-sans-jp">
-          © {currentYear} Toshiki Sakuta. All rights reserved.
+        <motion.p
+          {...fadeInUp(0.2)}
+          className="text-sm text-center font-noto-sans-jp"
+        >
+          © {year} Toshiki Sakuta. All rights reserved.
         </motion.p>
       </div>
     </footer>
   );
 }
-
-// SNSリンクコンポーネント
-interface SocialLinkProps {
-  href: string;
-  icon: React.ElementType;
-  label: string;
-}
-
-const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
-  <Button size="icon" variant="ghost" asChild aria-label={label}>
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      <Icon className="w-5 h-5" />
-    </a>
-  </Button>
-);

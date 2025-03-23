@@ -7,21 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { detailPageAnimations } from "@/lib/animations";
 import type { ReactNode } from "react";
 
-
 // 詳細ページのアニメーション付きコンテンツ
-
 export interface DetailLayoutContentProps {
-  /** ページのタイトル */
   title?: string;
-  /** ページの説明（SEO用） */
   description?: string;
-  /** 戻るボタンのテキスト */
   backText?: string;
-  /** 子要素 */
   children: ReactNode;
-  /** 戻るリンクのパス */
   backPath?: string;
-  /** スキップアニメーション */
   skipAnimation?: boolean;
 }
 
