@@ -1,35 +1,31 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
+import { Eye } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { usePortfolioFilterStore } from "@/hooks/features/portfolio/use-portfolio-filter-store";
-import type { PortfolioItem } from "@/lib/types/portfolio";
 import { PortfolioCard } from "@/components/features/PortfolioCard";
 import { PortfolioFilter } from "@/components/features/PortfolioFilter";
+import { usePortfolioFilterStore } from "@/hooks/features/portfolio/use-portfolio-filter-store";
+import type { PortfolioItem } from "@/lib/types/portfolio";
 
-
-// 型定義
-
+// ==============================
+// Props型定義
+// ==============================
 interface PortfolioGridProps {
-  /**
-   * 表示するアイテムのリスト
-   */
+  /** 表示するポートフォリオアイテムのリスト */
   items: PortfolioItem[];
 
-  /**
-   * フィルターを表示するかどうか
-   */
+  /** フィルターUIを表示するか */
   showFilters?: boolean;
 
-  /**
-   * オプションのクラス名
-   */
+  /** カスタムクラス名 */
   className?: string;
 }
 
-
-// ポートフォリオグリッドコンポーネント
-
+// ==============================
+// PortfolioGrid コンポーネント
+// ==============================
 export function PortfolioGrid({
   items,
   showFilters = false,
@@ -37,33 +33,38 @@ export function PortfolioGrid({
 }: PortfolioGridProps) {
   const { filteredItems, hasMore, viewAll, setItems } = usePortfolioFilterStore();
 
-  // コンポーネントがマウントされた時に、アイテムをストアに設定
+  // 初期マウント時に items をセット（グローバルストアへ）
   useEffect(() => {
     setItems(items);
   }, [items, setItems]);
 
   return (
-    <div className={className}>
-      {/* フィルター */}
+    <div className={cn("space-y-8", className)}>
+      {/* フィルターエリア（任意表示） */}
       {showFilters && (
-        <div className="mb-8">
+        <div>
           <PortfolioFilter items={items} />
         </div>
       )}
 
-      {/* グリッド */}
+      {/* グリッド表示 */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredItems.map((item) => (
-          <Fragment key={item.id}>
+          <div key={item.id}>
             <PortfolioCard item={item} />
-          </Fragment>
+          </div>
         ))}
       </div>
 
-      {/* すべてのポートフォリオを表示するボタン */}
-      <div className="mt-8 text-center">
-        <Button onClick={viewAll} variant="outline" className="w-full">すべて表示</Button>
-      </div>
+      {/* "すべて表示" ボタン（hasMore が true の時のみ） */}
+      {hasMore && (
+        <div className="text-center">
+          <Button onClick={viewAll} variant="outline" size="lg" className="w-full sm:w-auto">
+            <Eye className="w-4 h-4 mr-2" />
+            すべて表示
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
