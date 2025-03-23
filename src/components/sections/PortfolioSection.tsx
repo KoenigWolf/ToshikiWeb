@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PortfolioCard } from "../features/PortfolioCard";
+
+import { PortfolioCard } from "./PortfolioCard";
+
 import { portfolioItems as defaultItems } from "@/lib/data/portfolio";
 import { getFilteredItems } from "@/lib/hooks/portfolio";
 import { usePortfolioFilterStore } from "@/lib/hooks/features/portfolio";

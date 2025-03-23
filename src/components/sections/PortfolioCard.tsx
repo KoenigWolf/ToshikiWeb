@@ -1,9 +1,5 @@
 "use client";
 
-
-// ポートフォリオカードコンポーネント
-
-
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -17,17 +13,12 @@ import type { PortfolioItem } from "@/lib/types/portfolio";
 import { cn } from "@/lib/utils";
 
 export interface PortfolioCardProps {
-  /** ポートフォリオアイテム */
   item: PortfolioItem;
-  /** アニメーション遅延時間（秒） */
   delay?: number;
-  /** 追加のCSSクラス */
   className?: string;
 }
 
-/**
- * ポートフォリオカード：個別のプロジェクトカードを表示
- */
+// ポートフォリオカード：個別のプロジェクトカードを表示
 export function PortfolioCard({ 
   item, 
   delay = 0,

@@ -23,7 +23,7 @@ const formSchema = z.object({
   name: z.string().min(2, { message: "お名前は2文字以上で入力してください" }),
   email: z.string().email({ message: "有効なメールアドレスを入力してください" }),
   subject: z.string().min(2, { message: "件名を入力してください" }),
-  message: z.string().min(10, { message: "メッセージは10文字以上で入力してください" }),
+  message: z.string().min(3, { message: "メッセージは3文字以上で入力してください" }),
 });
 
 type ContactFormValues = z.infer<typeof formSchema>;

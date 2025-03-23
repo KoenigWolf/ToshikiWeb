@@ -1,37 +1,18 @@
-// =============================
-// Careerのプロジェクトデータを管理するファイル
-// =============================
-// このファイルは、Careerセクションに表示されるプロジェクト情報を定義します。
-// 各プロジェクトには、会社名、期間、役割、責任、使用技術、詳細業務、成果などの情報が含まれています。
-
 import type { Project, Certification } from "./types";
 
-// =============================
-// 定数: プロジェクトの使用技術（環境）リスト
-// =============================
-const ProjectEnvironment = {
+export const ProjectEnvironment = {
   FRONTEND: ["Next.js", "React", "Vue.js", "TailwindCSS", "TypeScript"],
   BACKEND: ["Node.js", "Express", "SQL", "REST API"],
   CLOUD: ["Microsoft Azure", "AWS", "Azure Functions"],
   SECURITY: ["Defender for Endpoint", "Defender for Cloud", "Sentinel"],
   BUSINESS: ["Dynamics 365", "Power Platform", "SharePoint Online"],
-  TOOLS: ["Git", "Excel VBA", "Power Automate"]
+  TOOLS: ["Git", "Excel VBA", "Power Automate"],
 } as const;
 
-// =============================
-// プロジェクト情報の定義
-// =============================
-// プロジェクトの基本情報を定義する型
-type ProjectBase = Omit<Project, 'id'> & { id: string };
+const create = <T extends { id: string }>(data: T): T => data;
 
-// プロジェクト情報を生成する関数
-const createProject = (project: ProjectBase): Project => project;
-
-// =============================
-// プロジェクト情報の配列
-// =============================
-export const projects: Project[] = [
-  createProject({
+export const projects: Readonly<Project[]> = [
+  create({
     id: "web-dev",
     title: "Web サイト制作（個人開発）",
     company: "個人開発",
@@ -47,7 +28,7 @@ export const projects: Project[] = [
     ],
     achievements: ["フロントエンド、デプロイ環境を統合的に実装"]
   }),
-  createProject({
+  create({
     id: "azure-security",
     title: "Microsoft Azure エンジニア",
     company: "Concentrix Japan",
@@ -62,7 +43,7 @@ export const projects: Project[] = [
     ],
     achievements: ["顧客評価平均 4.7 以上（5点満点）の高評価を獲得"]
   }),
-  createProject({
+  create({
     id: "dynamics365",
     title: "Microsoft Dynamics 365 エンジニア",
     company: "Concentrix Japan",
@@ -77,7 +58,7 @@ export const projects: Project[] = [
     ],
     achievements: ["顧客評価平均 4.7 以上の高評価を獲得"]
   }),
-  createProject({
+  create({
     id: "microsoft365",
     title: "Microsoft 365 エンジニア",
     company: "Concentrix Japan",
@@ -92,47 +73,29 @@ export const projects: Project[] = [
     ],
     achievements: ["顧客評価平均 4.7 以上（5点満点）の高評価を獲得"]
   }),
-  createProject({
+  create({
     id: "real-estate",
-    title: "不動仲介営業",
+    title: "不動産仲介営業",
     company: "株式会社LogProstyle",
     period: "2019年2月 ～ 2020年5月",
     role: "不動産仲介営業",
-    responsibilities: [
-      "顧客対応", 
-      "契約交渉", 
-      "市場分析", 
-      "営業戦略策定"
-    ],
-    environment: [
-      "オフライン・オンライン営業", 
-      "Salesforce", 
-      "Excel VBA"
-    ],
+    responsibilities: ["顧客対応", "契約交渉", "市場分析", "営業戦略策定"],
+    environment: ["オフライン・オンライン営業", "Salesforce", "Excel VBA"],
     details: [
       "データ分析を活用し、営業プロセスの効率化および最適化を推進",
       "成約率の高い物件の特徴抽出により、ターゲット層別のマーケティング施策を策定",
       "Excel VBA による営業 KPI の自動集計・レポート作成"
     ],
-    achievements: [
-      "不動産会社向けシステム営業成績全国１位の実績を達成"
-    ]
+    achievements: ["不動産会社向けシステム営業成績全国１位の実績を達成"]
   }),
-  createProject({
+  create({
     id: "circuit-design",
     title: "電装回路設計エンジニア",
     company: "株式会社メイテック",
     period: "2017年4月 ～ 2019年1月",
     role: "電装回路設計エンジニア",
-    responsibilities: [
-      "ECU センサー回路設計", 
-      "基板設計回路評価", 
-      "テスト", 
-      "プロジェクト進行管理"
-    ],
-    environment: [
-      "CATIA V5"
-    ],
+    responsibilities: ["ECU センサー回路設計", "基板設計回路評価", "テスト", "プロジェクト進行管理"],
+    environment: ["CATIA V5"],
     overview: "自動車用電子制御ユニット（ECU）およびセンサー回路の設計を担当。基板レイアウトから回路評価、シミュレーションによる最適化まで幅広く従事。",
     details: [
       "自動車用 ECU の回路設計および基板レイアウト設計、シミュレーションによる電気特性最適化",
@@ -142,96 +105,39 @@ export const projects: Project[] = [
   })
 ];
 
-// =============================
-// 資格情報の定義
-// =============================
-// 資格情報の基本情報を定義する型
-type CertificationBase = Omit<Certification, 'id'> & { id: string };
-
-// 資格情報を生成する関数
-const createCertification = (certification: CertificationBase): Certification => certification;
-
-// =============================
-// 資格情報の配列
-// =============================
-export const certifications: Certification[] = [
-  createCertification({
-    id: "az-900",
-    name: "AZ-900：Microsoft Azure Fundamentals",
-    date: "2023年1月",
-    issuer: "Microsoft"
-  }),
-  createCertification({
-    id: "pl-900",
-    name: "PL-900：Power Platform Fundamentals",
-    date: "2022年8月",
-    issuer: "Microsoft"
-  }),
-  createCertification({
-    id: "drivers-license",
-    name: "普通自動車免許第一種",
-    date: "2010年4月",
-    issuer: "日本政府"
-  })
-];
-
-// =============================
-// プロジェクト関連のユーティリティ関数
-// =============================
-
-/**
- * プロジェクトをIDで検索する関数
- * @param id 検索するプロジェクトのID
- * @returns 該当するプロジェクト、または見つからない場合はundefined
- */
-export function getProjectById(id: string): Project | undefined {
-  return projects.find(project => project.id === id);
+// --- ユーティリティ関数 ---
+// 日本語の期間文字列を Date に変換
+function parseJapaneseDate(dateStr: string): Date {
+  const cleaned = dateStr.split("～")[0].trim().replace("年", "-").replace("月", "");
+  return new Date(cleaned);
 }
 
-/**
- * 会社名でプロジェクトをフィルタリングする関数
- * @param company フィルタリングする会社名
- * @returns 該当する会社のプロジェクト配列
- */
-export function getProjectsByCompany(company: string): Project[] {
-  return projects.filter(project => project.company === company);
-}
+// IDからプロジェクト取得
+export const getProjectById = (id: string): Project | undefined => {
+  return projects.find((p) => p.id === id);
+};
 
-/**
- * 期間でプロジェクトをソートする関数（新しい順）
- * @returns 日付でソートされたプロジェクト配列
- */
-export function getSortedProjectsByDate(): Project[] {
-  return [...projects].sort((a, b) => {
-    const dateA = new Date(a.period.split("～")[0].trim().replace("年", "-").replace("月", ""));
-    const dateB = new Date(b.period.split("～")[0].trim().replace("年", "-").replace("月", ""));
-    return dateB.getTime() - dateA.getTime();
-  });
-}
+// 会社名で絞り込み
+export const getProjectsByCompany = (company: string): Project[] => {
+  return projects.filter((p) => p.company === company);
+};
 
-/**
- * 環境（技術）でプロジェクトをフィルタリングする関数
- * @param tech フィルタリングする技術名
- * @returns 該当する技術を使用したプロジェクト配列
- */
-export function getProjectsByTechnology(tech: string): Project[] {
-  return projects.filter(project => project.environment.includes(tech));
-}
+// 技術タグで絞り込み
+export const getProjectsByTechnology = (tech: string): Project[] => {
+  return projects.filter((p) => p.environment.includes(tech));
+};
 
-/**
- * 役割でプロジェクトをフィルタリングする関数
- * @param role フィルタリングする役割名
- * @returns 該当する役割のプロジェクト配列
- */
-export function getProjectsByRole(role: string): Project[] {
-  return projects.filter(project => project.role === role);
-}
+// ロールで絞り込み
+export const getProjectsByRole = (role: string): Project[] => {
+  return projects.filter((p) => p.role === role);
+};
 
-/**
- * すべてのユニークな技術スタックを取得する関数
- * @returns ユニークな技術スタックの配列
- */
-export function getAllTechnologies(): string[] {
-  const allTech = projects.flatMap(project => project.environment);
-  return [...new Set(allTech)];
-}
+// 日付順ソート（新しい順）
+export const getSortedProjectsByDate = (): Project[] => {
+  return [...projects].sort((a, b) => parseJapaneseDate(b.period).getTime() - parseJapaneseDate(a.period).getTime());
+};
+
+// ユニークな技術スタック一覧
+export const getAllTechnologies = (): string[] => {
+  return [...new Set(projects.flatMap((p) => p.environment))];
+};

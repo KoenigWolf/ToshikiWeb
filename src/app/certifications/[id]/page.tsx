@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { certifications } from "@/lib/profile";
-import { CertificationDetail } from "@/components/features/CertificationDetail";
+import { CertificationDetail } from "@/components/sections/CertificationDetail";
 import { generateMetadata as createMetadata } from "@/lib/metadata";
 import type { Certification } from "@/lib/profile";
 import type { Metadata } from "next";

@@ -1,4 +1,4 @@
-import { AboutDetail } from "@/components/features/AboutDetail";
+import { AboutDetail } from "@/components/sections/AboutDetail";
 
 
 // プロフィール詳細ページ

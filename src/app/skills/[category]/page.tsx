@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { skills } from "@/lib/profile";
-import { SkillDetail } from "@/components/features/SkillDetail";
+import { SkillDetail } from "@/components/sections/SkillDetail";
 import { generateMetadata as createMetadata } from "@/lib/metadata";
 import type { SkillCategory } from "@/lib/profile";
 import type { Metadata } from "next";
