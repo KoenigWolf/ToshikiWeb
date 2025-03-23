@@ -50,74 +50,76 @@
 
 @layer base {
   :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.141 0.005 285.823);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.141 0.005 285.823);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.141 0.005 285.823);
-    --primary: oklch(0.21 0.006 285.885);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.967 0.001 286.375);
-    --muted-foreground: oklch(0.552 0.016 285.938);
-    --accent: oklch(0.967 0.001 286.375);
-    --accent-foreground: oklch(0.21 0.006 285.885);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.92 0.004 286.32);
-    --input: oklch(0.92 0.004 286.32);
-    --ring: oklch(0.705 0.015 286.067);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.141 0.005 285.823);
-    --sidebar-primary: oklch(0.21 0.006 285.885);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.967 0.001 286.375);
-    --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-    --sidebar-border: oklch(0.92 0.004 286.32);
-    --sidebar-ring: oklch(0.705 0.015 286.067);
+    /* ピカソインスパイアのカラーパレット - 明るいテーマ */
+    --background: oklch(0.99 0.01 240);
+    --foreground: oklch(0.2 0.04 280);
+    --card: oklch(0.98 0.02 220);
+    --card-foreground: oklch(0.2 0.04 280);
+    --popover: oklch(0.98 0.02 220);
+    --popover-foreground: oklch(0.2 0.04 280);
+    --primary: oklch(0.6 0.25 200);
+    --primary-foreground: oklch(0.99 0.01 240);
+    --secondary: oklch(0.8 0.15 40);
+    --secondary-foreground: oklch(0.2 0.03 280);
+    --muted: oklch(0.95 0.03 220);
+    --muted-foreground: oklch(0.5 0.1 250);
+    --accent: oklch(0.7 0.2 10);
+    --accent-foreground: oklch(0.99 0.01 240);
+    --destructive: oklch(0.6 0.3 30);
+    --destructive-foreground: oklch(0.99 0.01 240);
+    --border: oklch(0.85 0.05 230);
+    --input: oklch(0.85 0.05 230);
+    --ring: oklch(0.6 0.25 200);
+    --chart-1: oklch(0.65 0.3 40);
+    --chart-2: oklch(0.55 0.25 190);
+    --chart-3: oklch(0.45 0.22 280);
+    --chart-4: oklch(0.75 0.2 100);
+    --chart-5: oklch(0.6 0.25 350);
+    --radius: 0.75rem;
+    --sidebar: oklch(0.97 0.02 240);
+    --sidebar-foreground: oklch(0.2 0.04 280);
+    --sidebar-primary: oklch(0.6 0.25 200);
+    --sidebar-primary-foreground: oklch(0.99 0.01 240);
+    --sidebar-accent: oklch(0.7 0.2 10);
+    --sidebar-accent-foreground: oklch(0.99 0.01 240);
+    --sidebar-border: oklch(0.85 0.05 230);
+    --sidebar-ring: oklch(0.6 0.25 200);
   }
 
   .dark {
-    --background: oklch(0.141 0.005 285.823);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.141 0.005 285.823);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.141 0.005 285.823);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.21 0.006 285.885);
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.274 0.006 286.033);
-    --muted-foreground: oklch(0.705 0.015 286.067);
-    --accent: oklch(0.274 0.006 286.033);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
-    --border: oklch(0.274 0.006 286.033);
-    --input: oklch(0.274 0.006 286.033);
-    --ring: oklch(0.442 0.017 285.786);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.21 0.006 285.885);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.274 0.006 286.033);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(0.274 0.006 286.033);
-    --sidebar-ring: oklch(0.442 0.017 285.786);
+    /* ピカソインスパイアのカラーパレット - ダークテーマ */
+    --background: oklch(0.15 0.03 250);
+    --foreground: oklch(0.95 0.02 220);
+    --card: oklch(0.2 0.05 240);
+    --card-foreground: oklch(0.95 0.02 220);
+    --popover: oklch(0.2 0.05 240);
+    --popover-foreground: oklch(0.95 0.02 220);
+    --primary: oklch(0.55 0.28 190);
+    --primary-foreground: oklch(0.95 0.02 220);
+    --secondary: oklch(0.65 0.18 40);
+    --secondary-foreground: oklch(0.95 0.02 220);
+    --muted: oklch(0.3 0.05 240);
+    --muted-foreground: oklch(0.7 0.1 220);
+    --accent: oklch(0.5 0.24 10);
+    --accent-foreground: oklch(0.95 0.02 220);
+    --destructive: oklch(0.5 0.3 20);
+    --destructive-foreground: oklch(0.95 0.02 220);
+    --border: oklch(0.3 0.08 240);
+    --input: oklch(0.3 0.08 240);
+    --ring: oklch(0.55 0.28 190);
+    --chart-1: oklch(0.6 0.35 40);
+    --chart-2: oklch(0.5 0.28 190);
+    --chart-3: oklch(0.4 0.25 280);
+    --chart-4: oklch(0.7 0.22 100);
+    --chart-5: oklch(0.55 0.28 350);
+    --sidebar: oklch(0.18 0.04 250);
+    --sidebar-foreground: oklch(0.95 0.02 220);
+    --sidebar-primary: oklch(0.55 0.28 190);
+    --sidebar-primary-foreground: oklch(0.95 0.02 220);
+    --sidebar-accent: oklch(0.5 0.24 10);
+    --sidebar-accent-foreground: oklch(0.95 0.02 220);
+    --sidebar-border: oklch(0.3 0.08 240);
+    --sidebar-ring: oklch(0.55 0.28 190);
   }
 
   * {
@@ -135,5 +137,70 @@
 
   .h-\[400px\] {
     height: 400px;
+  }
+  
+  /* ピカソスタイルのカスタムアニメーション */
+  @keyframes cubism-rotate {
+    0% { transform: rotate(0deg) skew(0deg); }
+    25% { transform: rotate(1deg) skew(1deg); }
+    50% { transform: rotate(0deg) skew(0deg); }
+    75% { transform: rotate(-1deg) skew(-1deg); }
+    100% { transform: rotate(0deg) skew(0deg); }
+  }
+  
+  .cubism-animation {
+    animation: cubism-rotate 7s ease-in-out infinite;
+  }
+  
+  /* 非対称ボーダーエフェクト */
+  .picasso-border {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .picasso-border::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: 3px;
+    bottom: 3px;
+    background: transparent;
+    border: 2px solid;
+    border-color: var(--accent);
+    border-radius: var(--radius-lg);
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+  
+  .picasso-border:hover::before {
+    top: 3px;
+    left: 3px;
+    right: -3px;
+    bottom: -3px;
+  }
+  
+  /* 抽象的な形状のクリッピングパス */
+  .clip-abstract {
+    clip-path: polygon(0% 15%, 15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%);
+  }
+  
+  /* ピカソスタイルのグラデーション背景 */
+  .bg-picasso-gradient {
+    background: linear-gradient(45deg, 
+      oklch(0.6 0.25 200) 0%, 
+      oklch(0.7 0.22 40) 25%, 
+      oklch(0.8 0.18 100) 50%, 
+      oklch(0.6 0.28 350) 75%, 
+      oklch(0.55 0.25 190) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }

@@ -13,6 +13,15 @@ import {
   TooltipTrigger 
 } from "@/components/ui/tooltip";
 
+// 抽象的なシェイプコンポーネント（ピカソスタイル）
+const AbstractShape = ({ className = "", style = {}, ...props }) => (
+  <motion.div
+    className={`absolute pointer-events-none ${className}`}
+    style={style}
+    {...props}
+  />
+);
+
 // fadeInUp: フェードイン・スライドアップのアニメーション設定を返す関数
 const fadeInUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 }, // 初期状態: 透明で下に20pxずれている
@@ -25,11 +34,70 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="flex items-center justify-center min-h-screen pt-20 pb-10 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="relative flex items-center justify-center min-h-screen pt-20 pb-10 overflow-hidden"
     >
-      <div className="container px-4 mx-auto text-center">
+      {/* ピカソスタイルの抽象的な背景 */}
+      <div className="absolute inset-0 opacity-10">
+        <AbstractShape
+          className="w-40 h-40 rounded-full bg-primary"
+          style={{ top: '15%', left: '10%' }}
+          animate={{
+            x: [0, 10, -5, 0],
+            y: [0, -10, 5, 0],
+            rotate: [0, 5, -5, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: "reverse",
+          }}
+        />
+        <AbstractShape
+          className="w-64 h-64"
+          style={{ 
+            top: '60%', 
+            right: '15%',
+            background: 'var(--secondary)',
+            clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
+          }}
+          animate={{
+            x: [0, -15, 10, 0],
+            y: [0, 15, -10, 0],
+            rotate: [0, -10, 10, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: "reverse",
+          }}
+        />
+        <AbstractShape
+          className="w-48 h-48"
+          style={{ 
+            top: '25%', 
+            right: '25%',
+            background: 'var(--accent)',
+            clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'
+          }}
+          animate={{
+            x: [0, 20, -10, 0],
+            y: [0, -20, 10, 0],
+            rotate: [0, 15, -15, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: "reverse",
+          }}
+        />
+      </div>
+
+      <div className="container relative z-10 px-4 mx-auto text-center">
         <ProfileIcon /> {/* プロフィールアイコン */}
-        <motion.h1 {...fadeInUp(0.2)} className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl font-noto-sans-jp">
+        <motion.h1 
+          {...fadeInUp(0.2)} 
+          className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl font-noto-sans-jp"
+        >
           {personalInfo.name} {/* 名前 */}
         </motion.h1>
         <motion.p
@@ -47,10 +115,12 @@ export function HeroSection() {
 // ProfileIconコンポーネント：プロフィール画像とステータスインジケーターを表示
 const ProfileIcon = () => (
   <motion.div {...fadeInUp()} className="relative inline-block mb-4">
-    <Avatar size="xl" className="border-4 border-primary/20">
-      <AvatarImage src="/Toshiki.webp" alt="Toshiki Sakuta" />
-      <AvatarFallback>TS</AvatarFallback>
-    </Avatar>
+    <div className="cubism-animation">
+      <Avatar size="xl" className="border-4 border-primary/20 picasso-border">
+        <AvatarImage src="/Toshiki.webp" alt="Toshiki Sakuta" />
+        <AvatarFallback>TS</AvatarFallback>
+      </Avatar>
+    </div>
     <motion.div
       initial={{ scale: 0 }} // 初期状態: ゼロスケール
       animate={{ scale: 1 }}   // アニメート状態: 通常サイズ
@@ -87,7 +157,7 @@ const ScrollDownButton = () => {
         onClick={scrollToBottom}
         size="icon"
         variant="outline"
-        className="w-12 h-12 rounded-full"
+        className="w-12 h-12 rounded-full picasso-border"
         aria-label="ページ最下部にスクロール"
       >
         <ArrowDown className="w-6 h-6" />
