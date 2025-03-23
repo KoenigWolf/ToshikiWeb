@@ -72,13 +72,13 @@ export function PortfolioSection({ items = defaultItems }: PortfolioSectionProps
       </div>
 
       {/* 「もっと見る」 */}
-      <div className="mt-8 text-center">
-        <Button asChild>
-          <Link href="/portfolio" aria-label="ポートフォリオ一覧ページへ">
-            もっと見る <ArrowRight className="w-4 h-4 ml-2" />
-          </Link>
-        </Button>
-      </div>
+      {/* <div className="mt-8 text-center"> */}
+        {/* <Button asChild> */}
+          {/* <Link href="/portfolio" aria-label="ポートフォリオ一覧ページへ"> */}
+            {/* もっと見る <ArrowRight className="w-4 h-4 ml-2" /> */}
+          {/* </Link> */}
+        {/* </Button> */}
+      {/* </div> */}
     </Section>
   );
 }
