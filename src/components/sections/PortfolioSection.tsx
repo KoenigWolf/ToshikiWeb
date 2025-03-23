@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import { PortfolioCard } from "./PortfolioCard";
+import { PortfolioCard } from "../common/PortfolioCard";
 
 import { portfolioItems as defaultItems } from "@/lib/data/portfolio";
 import { getFilteredItems } from "@/lib/hooks/portfolio";

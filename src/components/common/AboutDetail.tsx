@@ -68,7 +68,7 @@ const PROFILE_INFO_ITEMS: ProfileInfoItem[] = [
 ];
 
 // CAREER_TIMELINE
-// ・経歴タイムラインに表示する各項目の期間とタイトルの定義
+// 経歴タイムラインに表示する各項目の期間とタイトルの定義
 const CAREER_TIMELINE: CareerTimelineItem[] = [
   { period: "2022", title: "Microsoft Azure Project" },
   { period: "2021", title: "Dynamics 365 Project" },

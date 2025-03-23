@@ -5,9 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { getProjectById } from "@/lib/projects";
 import type { Project } from "@/lib/projects";
 
-
 // 経歴詳細表示コンポーネント
-
 export interface ExperienceDetailProps {
   projectId: string;
 }

@@ -4,7 +4,7 @@
 
 import { Suspense } from "react";
 import { getPortfolioItems } from "@/lib/server/portfolio";
-import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
+import { PortfolioGrid } from "@/components/common/PortfolioGrid";
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";

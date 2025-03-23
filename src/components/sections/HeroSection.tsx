@@ -44,7 +44,7 @@ export function HeroSection() {
   );
 }
 
-// ProfileIconコンポーネント: プロフィール画像とステータスインジケーターを表示
+// ProfileIconコンポーネント：プロフィール画像とステータスインジケーターを表示
 const ProfileIcon = () => (
   <motion.div {...fadeInUp()} className="relative inline-block mb-4">
     <Avatar size="xl" className="border-4 border-primary/20">
@@ -71,7 +71,7 @@ const ProfileIcon = () => (
   </motion.div>
 );
 
-// ScrollDownButtonコンポーネント: 下部へスクロールするボタンを表示
+// ScrollDownButtonコンポーネント：下部へスクロールするボタンを表示
 const ScrollDownButton = () => {
   // ページ最下部へスムーズにスクロールする関数
   const scrollToBottom = () => {

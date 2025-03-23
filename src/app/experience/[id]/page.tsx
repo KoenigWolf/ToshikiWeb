@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { ExperienceDetail } from "@/components/sections/ExperienceDetail";
+import { ExperienceDetail } from "@/components/common/ExperienceDetail";
 import { getProjectById } from "@/lib/projects"; 
 import type { Project } from "@/lib/projects";
 import { generateMetadata as createMetadata } from "@/lib/metadata";

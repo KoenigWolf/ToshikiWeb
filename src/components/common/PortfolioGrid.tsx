@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { PortfolioCard } from "@/components/sections/PortfolioCard";
-import { PortfolioFilter } from "@/components/sections/PortfolioFilter";
+import { PortfolioCard } from "@/components/common/PortfolioCard";
+import { PortfolioFilter } from "@/components/common/PortfolioFilter";
 import { usePortfolioFilterStore } from "@/hooks/features/portfolio/use-portfolio-filter-store";
 import type { PortfolioItem } from "@/lib/types/portfolio";
 
