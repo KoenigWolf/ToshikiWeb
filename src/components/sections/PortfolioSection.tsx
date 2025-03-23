@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { PortfolioItem } from "@/lib/types/portfolio";
 import { Filter, ArrowRight } from "lucide-react";
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import { escape } from "lodash";
 
 // ==============================

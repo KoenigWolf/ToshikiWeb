@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type JSXElementConstructor, type Key, type ReactElement, type ReactNode, type ReactPortal, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -37,10 +37,10 @@ export function ExperienceSection() {
             viewport={{ once: true }}
           >
             <TabsList className="grid w-full h-auto grid-cols-2 mb-8 md:grid-cols-3 lg:grid-cols-6">
-              {projects.map((project) => (
+              {projects.map((project: { id: Key | null | undefined; title: string; }) => (
                 <TabsTrigger
                   key={project.id}
-                  value={project.id}
+                  value={project.id?.toString() || ""}
                   className="py-3 font-noto-sans-jp"
                 >
                   {project.title.split(" ")[0]}
@@ -48,9 +48,18 @@ export function ExperienceSection() {
               ))}
             </TabsList>
           </motion.div>
-
           {/* タブごとのコンテンツ */}
-          {projects.map((project) => (
+          {projects.map((project: {
+            period: ReactNode;
+            role: ReactNode;
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+            overview: any;
+            responsibilities: ReactNode[];
+            environment: ReactNode[];
+            title: ReactNode;
+            company: ReactNode;
+            id: string;
+}) => (
             <TabsContent key={project.id} value={project.id}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -89,7 +98,8 @@ export function ExperienceSection() {
                       <div>
                         <h4 className="mb-2 text-lg font-semibold font-noto-sans-jp">担当</h4>
                         <div className="flex flex-wrap gap-2">
-                          {project.responsibilities.map((item) => (
+                          {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
+                          {project.responsibilities.map((item: boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | Key | null | undefined) => (
                             <Badge key={item} variant="outline" className="font-noto-sans-jp">
                               {item}
                             </Badge>
