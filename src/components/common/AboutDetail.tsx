@@ -17,10 +17,7 @@ import {
   TooltipTrigger 
 } from "@/components/ui/tooltip";
 
-// ====================================
-// 型定義 (Types)
-// ====================================
-// ProfileInfoItem
+// 型定義 (Types)：ProfileInfoItem
 // 基本情報カード内に表示する各項目の構造を定義
 interface ProfileInfoItem {
   icon: React.ReactNode;
